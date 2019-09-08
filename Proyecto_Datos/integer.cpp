@@ -15,7 +15,7 @@ void ConvertirObjeto(string s1, nodo_simple* lista) {//realiza la conversion de 
 	for (int i = 0; i < s1.size();i++) {
 		vector[i] = stoi(s1.substr(i, 1));    //divide el string en digitos y se parsea a entero.
 	}
-
+	lista = nullptr;
 	for (int i = 0; i < s1.size();i++) {
 		InsertarLista(lista, vector[i]);  //guarda cada digito del string en la lista como entero
 	}
