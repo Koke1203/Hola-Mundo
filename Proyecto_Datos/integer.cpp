@@ -4,8 +4,17 @@
 #include "lista.h"
 using namespace std;
 
-struct Integer {   //convertidor de numeros
-
+struct Integer {  
+	//se declara la lista
+	struct nodo_simple* inicio = NULL;
+	
+	Integer(int num) {
+		ConvertirObjeto(to_string(num),inicio);
+	}
+	Integer(long num) {
+		//se convierte el numero
+		ConvertirObjeto(to_string(num),inicio);
+	}
 };
 
 void ConvertirObjeto(string s1, nodo_simple* lista) {//realiza la conversion de ya sea un int o long en Integer
@@ -19,5 +28,6 @@ void ConvertirObjeto(string s1, nodo_simple* lista) {//realiza la conversion de 
 	for (int i = 0; i < s1.size();i++) {
 		InsertarLista(lista, vector[i]);  //guarda cada digito del string en la lista como entero
 	}
+
 	MostrarSimple(lista);
 }
