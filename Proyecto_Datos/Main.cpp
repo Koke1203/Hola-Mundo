@@ -24,8 +24,6 @@ int main() {
 
 	MostrarSimple(inicio);
 
-
-
 	cout << endl;
 	return 0;
 }
