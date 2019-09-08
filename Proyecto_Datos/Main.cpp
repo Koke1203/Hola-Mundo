@@ -17,7 +17,6 @@ int main() {
 	}
 
 	struct nodo_simple* inicio = nullptr;
-
 	for (int i = 0; i < s1.size(); i++) {
 		InsertarLista(inicio, vector[i]);
 	}
