@@ -40,3 +40,4 @@ void MostrarSimple(nodo_simple* lista) {
 }
 
 #endif
+
