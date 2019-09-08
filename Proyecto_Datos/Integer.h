@@ -5,6 +5,8 @@
 #define INTEGER_H
 #include "lista.h" 
 
+extern struct Integer;
+
 extern void ConvertirObjeto(std::string s1, nodo_simple* lista);
 
 #endif

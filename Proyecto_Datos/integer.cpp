@@ -11,6 +11,8 @@ struct Integer {
 	//se declara la lista
 	struct nodo_simple* inicio = NULL;
 	
+	Integer() {}
+
 	Integer(int num) {
 		//se convierte el numero
 		ConvertirObjeto(to_string(num),inicio);
