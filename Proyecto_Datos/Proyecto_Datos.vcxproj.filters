@@ -29,5 +29,8 @@
     <ClCompile Include="integer.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="lista.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>
