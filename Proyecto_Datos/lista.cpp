@@ -1,6 +1,6 @@
-// libreria.h
-// Autores:
-// Descripcion: Libreria que implementa todas las operaciones de las estructuras lineales, como: listas,cola y pila 
+// lista.cpp
+// Autores: Gabriel Barboza, Jorge Canales y Joan Corea
+// Descripcion: Libreria que implementa operaciones de una lista
 
 #include<iostream>
 #include "lista.h"

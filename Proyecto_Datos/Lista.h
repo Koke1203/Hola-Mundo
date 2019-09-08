@@ -1,6 +1,6 @@
 // libreria.h
-// Autor: Joan Corea
-// Descripcion: Libreria que implementa todas las operaciones de las estructuras lineales, como: listas,cola y pila 
+// Autores: Gabriel Barboza, Jorge Canales y Joan Corea
+// Descripcion: Libreria que implementa todas las operaciones de una lista simple
 #ifndef LISTA_H
 #define LISTA_H
 

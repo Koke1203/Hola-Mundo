@@ -1,3 +1,6 @@
+// integer.cpp 
+// Autores: Gabriel Barboza, Jorge Canales y Joan Corea
+// Descripcion: Objeto integer que va contener numeros grandes
 #include <iostream>
 #include <string>
 #include "integer.h"
@@ -9,8 +12,10 @@ struct Integer {
 	struct nodo_simple* inicio = NULL;
 	
 	Integer(int num) {
+		//se convierte el numero
 		ConvertirObjeto(to_string(num),inicio);
 	}
+
 	Integer(long num) {
 		//se convierte el numero
 		ConvertirObjeto(to_string(num),inicio);

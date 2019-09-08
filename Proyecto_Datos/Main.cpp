@@ -1,4 +1,6 @@
-// C++ program to compute factorial of big numbers 
+//main.cpp
+// Autores: Gabriel Barboza, Jorge Canales y Joan Corea
+//Descripcion: archivo principal del proyecto
 #include<iostream> 
 #include<string>
 #include "lista.h"
