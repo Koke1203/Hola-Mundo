@@ -1,6 +1,5 @@
 // C++ program to compute factorial of big numbers 
 #include<iostream> 
-#include<string.h>
 #include<string>
 #include "lista.h"
 #include "integer.h"
@@ -9,13 +8,11 @@ using namespace std;
 // Driver program 
 int main() {
 
-	nodo_simple* lista = nullptr;
+	struct nodo_simple* inicio = NULL;
 
-	string s1 = "4894351688451728769255875819203593712573192578591813957937159217863918276973967263971836279632878927";
-
-	ConvertirObjeto(s1, lista);
-
-	MostrarSimple(lista);
+	string s1 = "123";
+	
+	ConvertirObjeto(s1, inicio);
 
 	cout << endl;
 	return 0;
