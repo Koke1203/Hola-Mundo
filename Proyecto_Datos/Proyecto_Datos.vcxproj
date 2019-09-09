@@ -125,9 +125,13 @@
   <ItemGroup>
     <ClInclude Include="integer.h" />
     <ClInclude Include="lista.h" />
+    <ClInclude Include="operaciones_basicas.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="integer.cpp" />
+    <ClCompile Include="lista.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="operaciones_basicas.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
