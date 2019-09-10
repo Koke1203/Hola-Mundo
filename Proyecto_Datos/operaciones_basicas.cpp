@@ -1,13 +1,14 @@
-//operaciones_basicas.cpp
+// operaciones_basicas.cpp
 // Autores: Gabriel Barboza, Jorge Canales y Joan Corea
-//Descripcion: metodos que van a calcular las operaciones basicas aritmeticas.
+// Descripcion: metodos que van a calcular las operaciones basicas aritmeticas.
 #include<iostream>
 #include "operaciones_basicas.h"
 #include "integer.h"
 using namespace std;
-
+/*
 Integer* SumaDigito(Integer* num1, Integer* num2) {
 	Integer* suma = NULL;
+	//aqui tengo que leer la lista, ver si se ocupa un for o algo asi, igual en las demas operaciones.
 	suma = num1+num2;
 	return suma;
 }
@@ -29,3 +30,4 @@ Integer* DivisionDigito(Integer* num1, Integer* num2) {
 	division = num1 / num2;
 	return division;
 }
+*/

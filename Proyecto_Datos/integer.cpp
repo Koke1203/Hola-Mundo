@@ -15,26 +15,32 @@ struct Integer {
 
 	Integer(int num) {
 		//se convierte el numero
-		ConvertirObjeto(to_string(num),inicio);
+		//ConvertirObjeto(to_string(num),inicio);
 	}
-
+	
 	Integer(long num) {
 		//se convierte el numero
-		ConvertirObjeto(to_string(num),inicio);
+		//ConvertirObjeto(to_string(num),inicio);
 	}
 };
 
 void ConvertirObjeto(string s1, nodo_simple* lista) {//realiza la conversion de ya sea un int o long en Integer
 	// Take any string
 	int* vector = new int[s1.size()];
+	int aux[4];
 
 	for (int i = 0; i < s1.size();i++) {
 		vector[i] = stoi(s1.substr(i, 1));    //divide el string en digitos y se parsea a entero.
 	}
 
-	for (int i = 0; i < s1.size();i++) {
-		InsertarLista(lista, vector[i]);  //guarda cada digito del string en la lista como entero
+	
+	for (int i = 0; i < s1.size();i+=4) {
+		for (int j = 0; j < 4;j++) {
+			aux[j] = vector[i+j];
+		}
+		InsertarLista(lista, aux);  //guarda cada digito del string en la lista como entero
 	}
 
 	MostrarSimple(lista);
+	
 }

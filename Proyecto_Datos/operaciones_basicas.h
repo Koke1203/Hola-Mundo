@@ -6,10 +6,11 @@
 
 #include "operaciones_basicas.h"
 #include "integer.h"
-
+/*
 extern Integer SumaDigito(Integer num1, Integer num2);
 extern Integer RestaDigito(Integer num1, Integer num2);
 extern Integer MultiplicacionDigito(Integer num1, Integer num2);
 extern Integer DivisionDigito(Integer num1, Integer num2);
+*/
 
 #endif
