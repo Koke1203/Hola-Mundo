@@ -14,6 +14,8 @@ int main() {
 	cout << "";
 	string s1 = "12305674456";
 	
+	cout << "";
+
 	ConvertirObjeto(s1, inicio);
 
 	cout << endl;
