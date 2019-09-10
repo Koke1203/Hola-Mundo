@@ -12,7 +12,7 @@ int main() {
 
 	struct nodo_simple* inicio = NULL;
 
-	string s1 = "1230567";
+	string s1 = "12305674456";
 	
 	//ConvertirObjeto(s1, inicio);
 	// Take any string
@@ -28,6 +28,11 @@ int main() {
 		InsertarLista(inicio, aux);  //guarda cada digito del string en la lista como entero
 	}
 	MostrarSimple(inicio);
+
+
+
+	//para validar que el vector no guarde basura, tengo que irme a la clase lista y validar que el numero no sea mayor que un digito,
+	//porque ya estaria guardando basura si fuera ese el caso, se debe guardar null
 
 	cout << endl;
 	return 0;
