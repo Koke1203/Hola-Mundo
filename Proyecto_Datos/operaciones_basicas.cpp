@@ -5,7 +5,7 @@
 #include "operaciones_basicas.h"
 #include "integer.h"
 using namespace std;
-/*
+
 Integer* SumaDigito(Integer* num1, Integer* num2) {
 	Integer* suma = NULL;
 	//aqui tengo que leer la lista, ver si se ocupa un for o algo asi, igual en las demas operaciones.
@@ -30,4 +30,3 @@ Integer* DivisionDigito(Integer* num1, Integer* num2) {
 	division = num1 / num2;
 	return division;
 }
-*/

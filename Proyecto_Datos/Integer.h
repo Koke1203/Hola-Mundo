@@ -9,6 +9,6 @@ using namespace std;
 
 extern struct Integer;
 
-//extern void ConvertirObjeto(string s1, nodo_simple* lista);
+extern void ConvertirObjeto(string s1, nodo_simple* inicio);
 
 #endif
