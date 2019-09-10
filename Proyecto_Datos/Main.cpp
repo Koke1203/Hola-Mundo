@@ -11,7 +11,7 @@ using namespace std;
 int main() {
 
 	struct nodo_simple* inicio = NULL;
-
+	cout << "";
 	string s1 = "12305674456";
 	
 	//ConvertirObjeto(s1, inicio);
