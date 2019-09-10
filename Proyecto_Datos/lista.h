@@ -4,7 +4,7 @@
 #ifndef LISTA_H
 #define LISTA_H
 
-struct nodo_simple;
+extern struct nodo_simple;
 
 extern void InsertarLista(nodo_simple*& actual, int* vector);
 
