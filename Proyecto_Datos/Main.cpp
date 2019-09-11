@@ -1,6 +1,6 @@
-//main.cpp
+// main.cpp
 // Autores: Gabriel Barboza, Jorge Canales y Joan Corea
-//Descripcion: archivo principal del proyecto
+// Descripcion: archivo principal del proyecto
 #include<iostream> 
 #include<string>
 #include "lista.h"
@@ -11,9 +11,11 @@ using namespace std;
 int main() {
 
 	struct nodo_simple* inicio = NULL;
-
-	string s1 = "123";
+	cout << "";
+	string s1 = "12305674456";
 	
+	cout << "";
+
 	ConvertirObjeto(s1, inicio);
 
 	cout << endl;

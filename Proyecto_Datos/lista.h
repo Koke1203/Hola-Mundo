@@ -6,7 +6,7 @@
 
 extern struct nodo_simple;
 
-extern void InsertarLista(nodo_simple*& actual, int vector);
+extern void InsertarLista(nodo_simple*& actual, int* vector);
 
 extern void MostrarSimple(nodo_simple* lista);
 
