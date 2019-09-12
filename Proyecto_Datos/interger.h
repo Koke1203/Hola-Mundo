@@ -1,7 +1,6 @@
-// interger.h
+// 
 // Autores: Gabriel Barboza, Jorge Canales y Joan Corea
-// Descripcion: clase integer que va almacenar un numero en una lista, el  numero puede ser de cualquier tamanio.
-
+// Descripcion:
 #ifndef LISTA_H
 #define LISTA_H
 
@@ -10,7 +9,8 @@
 #include<string>
 #include<iostream>
 using namespace std;
-class interger{
+class interger
+{
 
 private:
 
