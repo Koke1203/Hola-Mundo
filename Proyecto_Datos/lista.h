@@ -1,31 +1,34 @@
-// lista.h
-// Autores: Gabriel Barboza, Jorge Canales, Joan Corea.
-// Descripción: clase lista que contiene nodos genericos para su implementacion.ss
+// lista_doble_enlazada.h
+// Autor: Gabriel Barboza Carvajal
+// Descripción: clase lista que contiene nodos genericos para su implementacion.
+
+//------------------------------------------------------------------------
 
 #ifndef LISTA_DOBLE_ENLAZADA_H_
+#include"nodo.h"
 #define LISTA_DOBLE_ENLAZADA_H_
 
-#include"nodo.h"
-
-template <class T>
 class lista_doble_enlazada
 {
 private:
-	nodo<T>* inicio;
-	nodo<T>* actual;
-
+	nodo* inicio;
+	nodo* actual;
+	int cantidad_nodos;
 public:
-	int cantnodos;
+	int get_cantidad_nodos() {
+		return cantidad_nodos;
+	}
 	lista_doble_enlazada();
 	~lista_doble_enlazada();
 	bool es_vacia();
-	nodo<T>* getPrimero();
-	nodo<T>* getUltimo();
-	void insertar_elemento(T*);
+	nodo* getPrimero();
+	nodo* getUltimo();
+	void insertar_elementoPrimero(vector* v);
+	void insertar_elemento(vector* v);
 	void borrar_inicio();
 	void borrar_final();
-	T* buscar_elemento(T&);
-	bool borrar_elemento(T& elemento);
+	vector* buscar_elemento(vector& v);
+	bool borrar_elemento(vector& elemento);
 	//falta borrar elemento por indice
 	bool borrar_elemento_indice(int indice);
 	bool imprimir_lista();
@@ -38,17 +41,17 @@ public:
 
 //------------------------------------------------------------------------
 
-template<class T>
-inline lista_doble_enlazada<T>::lista_doble_enlazada()
+
+inline lista_doble_enlazada::lista_doble_enlazada()
 {
 	inicio = NULL;
 	actual = NULL;
 }
 
-template<class T>
-inline lista_doble_enlazada<T>::~lista_doble_enlazada()
+
+inline lista_doble_enlazada::~lista_doble_enlazada()
 {
-	nodo<T>* aux = inicio;
+	nodo* aux = inicio;
 
 	while (inicio != NULL)
 	{
@@ -61,11 +64,36 @@ inline lista_doble_enlazada<T>::~lista_doble_enlazada()
 	}
 }
 
-template<class T>
-inline void lista_doble_enlazada<T>::insertar_elemento(T* a)
+
+inline void lista_doble_enlazada::insertar_elementoPrimero(vector* a)
 {
-	nodo<T>* nuevo = new nodo<T>();
-	nuevo->setPtr(a);     // Guardamos el valor en el nodo
+	cout << "Elemento a insertar : " << *a << endl;
+	nodo* nuevo = new nodo();
+	nuevo->setVec(a);     // Guardamos el valor en el nodo
+	nuevo->setSig(nullptr);   // El puntero siguiente apuntaría a NULL
+	nuevo->setAnt(nullptr);   // el punterio anterior apuntaria a null
+
+	// Si la lista está vacía, el nodo creado se convierte en el primer elemento
+	if (inicio == nullptr)
+	{
+		nuevo->setAnt(inicio);
+		nuevo->setSig(inicio);
+		inicio = nuevo;
+	}
+	else {                      // Si ya existen elementos en la lista, entonces necesitamos
+		nodo* aux = inicio;     // un auxiliar para recorrer la lista y colocarnos al final
+		nuevo->setSig(aux);
+		aux->setAnt(nuevo);   // Apuntamos al nodo anterios
+		inicio = nuevo;
+	}
+	cantidad_nodos++;
+}
+
+inline void lista_doble_enlazada::insertar_elemento(vector* a)
+{
+	cout << "Elemento a insertar : " << *a << endl;
+	nodo* nuevo = new nodo();
+	nuevo->setVec(a);     // Guardamos el valor en el nodo
 	nuevo->setSig(nullptr);   // El puntero siguiente apuntaría a NULL
 	nuevo->setAnt(nullptr);
 
@@ -73,17 +101,17 @@ inline void lista_doble_enlazada<T>::insertar_elemento(T* a)
 	if (inicio == nullptr)
 		inicio = nuevo;
 	else {                      // Si ya existen elementos en la lista, entonces necesitamos
-		nodo<T>* aux = inicio;     // un auxiliar para recorrer la lista y colocarnos al final
+		nodo* aux = inicio;     // un auxiliar para recorrer la lista y colocarnos al final
 		while (aux->getSig() != nullptr)
 			aux = aux->getSig();
 		aux->setSig(nuevo);   // El último nodo apunta al nodo nuevo
 		nuevo->setAnt(aux);   // Apuntamos al nodo anterios
 	}
-	cantnodos++;
+	cantidad_nodos++;
 }
 
-template<class T>
-inline void lista_doble_enlazada<T>::borrar_inicio()
+
+inline void lista_doble_enlazada::borrar_inicio()
 {
 	actual = inicio;
 	if (inicio != nullptr)
@@ -92,11 +120,11 @@ inline void lista_doble_enlazada<T>::borrar_inicio()
 		inicio->setAnt(NULL);
 		delete actual;
 	}
-	cantnodos--;
+	cantidad_nodos--;
 }
 
-template<class T>
-inline void lista_doble_enlazada<T>::borrar_final()
+
+inline void lista_doble_enlazada::borrar_final()
 {
 	if (inicio != NULL and inicio->getSig() == nullptr)
 	{
@@ -114,8 +142,8 @@ inline void lista_doble_enlazada<T>::borrar_final()
 
 }
 
-template<class T>
-inline T* lista_doble_enlazada<T>::buscar_elemento(T& dato)
+
+inline vector* lista_doble_enlazada::buscar_elemento(vector& dato)
 {
 	actual = inicio;
 	if (actual->getPtr() == &dato)
@@ -132,8 +160,8 @@ inline T* lista_doble_enlazada<T>::buscar_elemento(T& dato)
 		return NULL;
 }
 
-template<class T>
-inline bool lista_doble_enlazada<T>::borrar_elemento(T& dato)
+
+inline bool lista_doble_enlazada::borrar_elemento(vector& dato)
 {
 
 	actual = inicio;
@@ -144,11 +172,11 @@ inline bool lista_doble_enlazada<T>::borrar_elemento(T& dato)
 		inicio->setAnt(nullptr);
 		delete actual;
 		actual = nullptr;
-		cantnodos--;
+		cantidad_nodos--;
 		return true;
 	}
 	else {
-		nodo<T>* anterior = NULL;
+		nodo* anterior = NULL;
 		// hay buscarlo entre la lista
 		while (actual->getPtr() != &dato and actual->getSig() != NULL)
 		{
@@ -158,17 +186,17 @@ inline bool lista_doble_enlazada<T>::borrar_elemento(T& dato)
 
 		if (actual->getPtr() == &dato and actual->getSig() == NULL) {//encontrado , y si es el ultimo
 			anterior->setSig(nullptr);
-			delete actual; cantnodos--;
+			delete actual; cantidad_nodos--;
 			return true;
 		}
 		if (actual->getPtr() == &dato and actual->getSig() != NULL)// si esta por el medio
 		{
-			nodo<T>* aux = actual->getSig();
+			nodo* aux = actual->getSig();
 			anterior->setSig(aux);
 			aux->setAnt(anterior);
 			delete actual;
 			actual = nullptr;
-			cantnodos--;
+			cantidad_nodos--;
 			return true;
 		}
 		else
@@ -177,17 +205,17 @@ inline bool lista_doble_enlazada<T>::borrar_elemento(T& dato)
 }
 
 
-template<class T>
-inline bool lista_doble_enlazada<T>::borrar_elemento_indice(int indice)
+
+inline bool lista_doble_enlazada::borrar_elemento_indice(int indice)
 {
-	if (inicio == NULL or indice<0 or indice>cantnodos)
+	if (inicio == NULL or indice<0 or indice>cantidad_nodos)
 		return false;
 	else// se encuentra en el rango para buscarlo
 	{
 
 		int a = 0;
 		imprimir_lista(); actual = inicio;
-		nodo<T>* aux = NULL;
+		nodo* aux = NULL;
 		while (a != indice and actual->getSig() != nullptr)
 		{
 			aux = actual;
@@ -201,29 +229,29 @@ inline bool lista_doble_enlazada<T>::borrar_elemento_indice(int indice)
 			borrar_inicio();
 			return true;
 		}
-		else if (a == cantnodos)//borrar el final
+		else if (a == cantidad_nodos)//borrar el final
 		{
 			borrar_final();
 			return true;
 		}
 		else//hay que borrar otros
 		{
-			nodo<T>* aux2 = actual->getSig();
+			nodo* aux2 = actual->getSig();
 			aux->setSig(aux2);
 			aux2->setAnt(aux);
 			delete actual;
-			cantnodos--;
+			cantidad_nodos--;
 			return true;
 		}
 
 	}
 }
 
-template<class T>
-inline bool lista_doble_enlazada<T>::imprimir_lista()
+
+inline bool lista_doble_enlazada::imprimir_lista()
 {
-	nodo<T>* aux = inicio; int a = 0;
-	cout << "NUMERO DE ELEMENTOS : " << cantnodos << "." << endl;
+	nodo* aux = inicio; int a = 0;
+	cout << "NUMERO DE ELEMENTOS : " << cantidad_nodos << "." << endl;
 
 	if (aux != nullptr)
 	{
@@ -231,8 +259,9 @@ inline bool lista_doble_enlazada<T>::imprimir_lista()
 		cout << "-------Mostrando los Datos--------" << endl;
 		while (aux != NULL)
 		{
-			cout << "N" << a++ << ". " <<
+			cout << "N" << a++ << ". " << "dir : " << aux->getPtr() << endl <<
 				*aux->getPtr() << endl;// si es un contenedor de personas , hay que sobrecargar el operador de salida
+
 			aux = aux->getSig();
 		}
 		return true;
@@ -245,8 +274,8 @@ inline bool lista_doble_enlazada<T>::imprimir_lista()
 	cout << endl << endl;
 }
 
-template<class T>
-inline bool lista_doble_enlazada<T>::imprimir_lista_invertida()
+
+inline bool lista_doble_enlazada::imprimir_lista_invertida()
 {
 
 	if (es_vacia()) {
@@ -254,7 +283,7 @@ inline bool lista_doble_enlazada<T>::imprimir_lista_invertida()
 	}
 	else
 	{
-		nodo<T>* aux;
+		nodo* aux;
 		aux = inicio;
 		while (aux->getSig() != nullptr) {
 			aux = aux->getSig();
@@ -269,10 +298,10 @@ inline bool lista_doble_enlazada<T>::imprimir_lista_invertida()
 
 }
 
-template<class T>
-inline void lista_doble_enlazada<T>::detalles()
+
+inline void lista_doble_enlazada::detalles()
 {
-	nodo<T>* aux = inicio;
+	nodo* aux = inicio;
 
 	if (es_vacia() == 0)
 	{
@@ -299,23 +328,23 @@ inline void lista_doble_enlazada<T>::detalles()
 
 
 
-template<class T>
-inline bool lista_doble_enlazada<T>::es_vacia()
+
+inline bool lista_doble_enlazada::es_vacia()
 {
 	return (inicio == NULL);
 }
 
-template<class T>
-inline nodo<T>* lista_doble_enlazada<T>::getPrimero()
+
+inline nodo* lista_doble_enlazada::getPrimero()
 {
 	if (es_vacia() == 0)
 		return inicio;
 	return NULL;
 }
-template<class T>
-inline nodo<T>* lista_doble_enlazada<T>::getUltimo()
+
+inline nodo* lista_doble_enlazada::getUltimo()
 {
-	nodo<T>* aux=this->getPrimero();
+	nodo* aux = this->getPrimero();
 	while (aux->getSig())
 		aux = aux->getSig();
 
@@ -327,292 +356,5 @@ inline nodo<T>* lista_doble_enlazada<T>::getUltimo()
 
 
 
+
 #endif  // FOO_BAR_BAZ_H_
-
-
-
-////#pragma once
-//
-//
-//// lista_doble_enlazada.h
-//// Autor: Gabriel Barboza Carvajal
-//// Descripción: clase lista que contiene nodos genericos para su implementacion.
-//
-//#ifndef LISTA_H_
-//#include"nodo.h"
-//#define LISTA_H_
-//
-//template<class T>
-//
-//class lista {
-//
-//private:
-//
-//	nodo<T>* inicio;   // Este es el super importante.
-//	nodo<T>* actual;
-//	int cantnodos;
-//
-//public:
-//
-//	lista();
-//	~lista();
-//	bool es_vacia();
-//	nodo<T>* getPrimero();
-//	void insertar_inicio(T*);
-//	void insertar_final(T*);
-//	bool borrar_inicio();
-//	bool borrar_final();
-//	T* buscar_elemento(T&);
-//	bool borrar_elemento(T&);
-//	bool borrar_elemento_indice(int indice);
-//	void imprimelista();
-//
-//
-//};
-////----------------Definicion de métodos------------------------
-//
-////-------------------Constructores------------------------------------------
-//template<class T>
-//lista<T>::lista()
-//{
-//	inicio = NULL;
-//	actual = NULL;
-//	cantnodos = 0;
-//}
-//
-//template<class T>
-//lista<T>::~lista()
-//{
-//	actual = inicio;
-//
-//	while (inicio != NULL)
-//	{
-//
-//		actual = inicio;
-//		inicio = inicio->getSig();
-//
-//		delete actual;
-//
-//	}
-//
-//}
-//
-////-------------------------------Metodos Funcionalidad--------------------------------------------------
-//
-//template<class T>
-//bool lista<T>::es_vacia()
-//{
-//	if (inicio == NULL) { return true; }
-//	return false;
-//}
-//
-//template<class T>
-//nodo<T>* lista<T>::getPrimero()
-//{
-//	if (es_vacia() == 0)
-//	{
-//		return inicio;
-//	}
-//	return NULL;
-//}
-//
-//template<class T>
-//void lista<T>::insertar_inicio(T* dato)
-//{
-//
-//	nodo<T>* aux = new nodo<T>(dato);// se le asigna el dato
-//	aux->setSig(inicio);//se asigna el siguiente nodo
-//	inicio = aux;
-//	cantnodos++;
-//
-//}
-//
-//template<class T>
-//inline void lista<T>::insertar_final(T* a)
-//{
-//	if (inicio == nullptr)
-//	{
-//		insertar_inicio(a);
-//	}
-//	else
-//	{
-//		actual = inicio;
-//		while (actual->getSig() != nullptr)
-//		{
-//			actual = actual->getSig();
-//		}
-//		nodo<T>* aux = new nodo<T>(a);
-//		aux->setSig(NULL);
-//		actual->setSig(aux);
-//		cantnodos++;
-//	}
-//}
-//
-//template<class T>
-//inline bool lista<T>::borrar_inicio()
-//{
-//	actual = inicio;
-//	if (inicio != nullptr)
-//	{
-//		inicio = actual->getSig();
-//		delete actual;
-//		cantnodos--;
-//		return true;
-//	}
-//	else
-//		return false;
-//}
-//
-//template<class T>
-//inline bool lista<T>::borrar_final()
-//{
-//	if (inicio == NULL)
-//		return false;
-//	else
-//	{
-//		if (inicio->getSig() == nullptr)
-//		{
-//			delete inicio;
-//			inicio = nullptr;
-//			cantnodos--;
-//			return true;
-//		}
-//		else
-//		{
-//			actual = inicio;
-//			while (actual->getSig() != NULL)
-//				actual = actual->getSig();
-//		}
-//		delete actual->getSig(); cantnodos--;
-//		actual->setSig(NULL);
-//		return true;
-//	}
-//}
-//
-//template<class T>
-//inline T* lista<T>::buscar_elemento(T& dato)
-//{
-//	actual = inicio;
-//	if (actual->getPtr() == &dato)
-//		return actual->getPtr();
-//
-//	else
-//
-//		while (actual->getPtr() != &dato and actual->getSig() != NULL)
-//			actual = actual->getSig();
-//
-//	if (actual->getPtr() == &dato) //encontrado
-//		return actual->getPtr();
-//	else
-//		return NULL;
-//}
-//
-//template<class T>
-//inline bool lista<T>::borrar_elemento(T& dato)
-//{
-//	actual = inicio;
-//
-//	if (actual->getPtr() == &dato)
-//	{
-//		inicio = inicio->getSig();
-//		delete actual; cantnodos--;
-//		return true;
-//	}
-//	else {
-//		nodo<T>* anterior = NULL;
-//
-//		while (actual->getPtr() != &dato and actual->getSig() != NULL)
-//		{
-//			anterior = actual;
-//			actual = actual->getSig();
-//		}
-//
-//		if (actual->getPtr() == &dato and actual->getSig() == NULL) {//encontrado , y si es el ultimo
-//			anterior->setSig(nullptr);
-//			delete actual; cantnodos--;
-//			return true;
-//		}
-//		if (actual->getPtr() == &dato and actual->getSig() != NULL)// si esta por el medio
-//		{
-//			anterior->setSig(actual->getSig());
-//			delete actual; cantnodos--;
-//			return true;
-//		}
-//		else
-//			return false;
-//	}
-//}
-//
-//template<class T>
-//inline bool lista<T>::borrar_elemento_indice(int indice)
-//{
-//	if (inicio == NULL or indice<0 or indice>cantnodos)
-//		return false;
-//	else// se encuentra en el rango para buscarlo
-//	{
-//
-//		int a = 0;
-//		imprimelista(); actual = inicio;
-//		nodo<T>* aux = NULL;
-//		while (a != indice and actual->getSig() != nullptr)
-//		{
-//			aux = actual;
-//			actual = actual->getSig();
-//			a++;
-//		}
-//		if (a != 0)
-//			cout << *(aux->getPtr()) << endl;
-//		if (a == 0)//hay que eliminar el primero
-//		{
-//
-//			borrar_inicio();
-//			return true;
-//		}
-//		else if (a == cantnodos)//borrar el final
-//		{
-//
-//			borrar_final();
-//			return true;
-//		}
-//		else//hay que borrar otros
-//		{
-//
-//			aux->setSig(actual->getSig());
-//			delete actual;
-//			cantnodos--;
-//			return true;
-//		}
-//
-//	}
-//}
-//
-//template<class T>
-//void lista<T>::imprimelista()
-//{
-//	actual = inicio;
-//	int a = 0;
-//	cout << "NUMERO DE ELEMENTOS : " << cantnodos << "." << endl;
-//	if (es_vacia() == 0)
-//	{
-//
-//		while (actual != NULL)
-//		{
-//			cout << "N" << a++ << ". " <<
-//				*actual->getPtr() << endl;// si es un contenedor de personas , hay que sobrecargar el operador de salida
-//			actual = actual->getSig();
-//		}
-//
-//	}
-//	else {
-//		cout << "la lista esta vacia " << endl;
-//	}
-//
-//	cout << "-----------------Fin de la Impresion------------------------------" << endl;
-//	cout << endl << endl;
-//}
-//
-//
-//
-//
-//
-//#endif  // FOO_BAR_BAZ_H_
