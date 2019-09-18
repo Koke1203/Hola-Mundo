@@ -1,15 +1,14 @@
-// vector.h
-// Autores: Gabriel Barboza, Jorge Canales, Joan Corea.
-// Descripción: clase vector que contiene todas las propiedades y operaciones que se realizan con los vectores. 
 
-#ifndef VECTOR_H
-#define VECTOR_H_
+
+#ifndef VECTOR_H_
+#include<iostream>
+using namespace std;
+#include<sstream>
 #define TAM 4;
 #define ZERO 0;
 #define UNO 1;
+#define VECTOR_H_
 
-#include<iostream>
-using namespace std;
 
 class vector
 {
@@ -19,58 +18,61 @@ private:
 	short tamanio;
 	short cantidad;
 	short* vec;
-
+	short carry;
 public:
 
 
+	void set_carry(short c)
+	{
+		carry = c;
+	}
+
+	short get_carry() {
+		return carry;
+	}
+
 	vector();
 
-	vector(const vector& vect) //: tamanio(vect.tamanio), cantidad(vect.cantidad), vec(new short(vect.tamanio))
-	{
-		tamanio = vect.tamanio;
-		cantidad = vect.cantidad;
-		vec = new short(vect.tamanio);
-		for (short i = 0; i < vect.cantidad; i++)
-		{
-			if (/*vect.vec[i] > 9 or */vect.vec[i] < 0)
-				vec[i] = 0;
-			else
-				vec[i] = vect.vec[i];
-		}
+	vector(const vector& vect);//: tamanio(vect.tamanio), cantidad(vect.cantidad), vec(new short(vect.tamanio))
 
-	}
 	~vector();
 
-	friend ostream& operator<< (ostream&, const vector&);
+	friend ostream& operator<< (ostream&, vector&);
+
 
 	vector& operator =(const vector& p); //  Operador de Asignación.
 	vector* operator =(const vector* p); //  Operador de Asignación.
+
+
+	//----------------------__ A C C E S O R E S ___----------------------------------------
+
+	short getCuarto();
+	short getTercero();
+	short getSegundo();
+	short getPrimero();
 
 	short getTam();
 	short getCant()
 	{
 		return cantidad;
 	}
+
+	//----------------------___ M U T A D O R E S ___----------------------------------------
+
+	void setCuarto(short a);
+	void setTercero(short a);
+	void setSegundo(short a);
+	void setPrimero(short a);
+	//----------------------I N S E R C I O N ___ B O R R A D O ___----------------------------------------
 	void borrarElementos();
-	bool insertarElemento(short i);
+	bool insertarElementoPrimero(short i);
+	bool insertarElementoFinal(short i);
 
-	void mostrarAlreves()
-	{
-		for (short i = 3; i >= 0; i--)
-		{
-			cout << vec[i] << "";
-		}
-		//cout << endl << endl;
-	}
-
-	void mostrarNormal()
-	{
-		for (short i = 0; i < 4; i++)
-		{
-			cout << vec[i] << "";
-		}
-		//cout << endl << endl;
-	}
+	//----------------------__I M P R E S I O N__----------------------------------------
+	void mostrarRellenandoOs();
+	void mostrarAlreves();
+	void mostrarNormal();
+	void mostrarNormalCasillas();
 
 };
 

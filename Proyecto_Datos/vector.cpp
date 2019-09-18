@@ -1,7 +1,3 @@
-// vector.cpp
-// Autores: Gabriel Barboza, Jorge Canales, Joan Corea.
-// Descripcion: clase vector que contiene sobrecargas del vector. 
-
 #include "vector.h"
 
 vector::vector()
@@ -18,8 +14,36 @@ vector::vector()
 
 }
 
+vector::vector(const vector& vect)
+{
+
+	tamanio = vect.tamanio;
+	cantidad = vect.cantidad;
+	vec = new short[vect.tamanio];
+	cout << "--------------------IMPRIMIENDO DEL VECTOR RECIBIDO---------------------------" << endl;
+	for (short i = tamanio - 1; i >= vect.tamanio - vect.cantidad; i--)
+		cout << vect.vec[i] << " , ";
+
+	cout << endl;
+	//system("pause");
+	for (short i = tamanio - 1; i >= vect.tamanio - vect.cantidad; i--)
+	{
+		if (vect.vec[i] == 0)
+			vec[i] = 0;
+		else
+			vec[i] = vect.vec[i];
+	}
+	for (short i = vect.tamanio - 1 - vect.cantidad; i >= 0; i--)
+	{
+		vec[i] = 0;
+	}
+
+
+}
+
 vector::~vector()
 {
+	delete[]vec;
 }
 
 vector& vector::operator=(const vector& a2)
@@ -64,25 +88,67 @@ vector* vector::operator=(const vector* a2)
 	return this; //Retornar una referencia es un *this.
 }
 
+short vector::getCuarto()
+{
+	return vec[3];
+}
+
+short vector::getTercero()
+{
+	return vec[2];
+}
+
+short vector::getSegundo()
+{
+	return vec[1];
+}
+
+short vector::getPrimero()
+{
+	return vec[0];
+}
+
 short vector::getTam()
 {
 	return tamanio;
 }
 
+void vector::setCuarto(short a)
+{
+	vec[3] = a;
+}
+
+void vector::setTercero(short a)
+{
+	vec[2] = a;
+}
+
+void vector::setSegundo(short a)
+{
+	vec[1] = a;
+}
+
+void vector::setPrimero(short a)
+{
+	vec[0] = a;
+}
+
 void vector::borrarElementos()
 {
 	cantidad = 0;
-
-	//vec = new short[tamanio];
-
+	/*
+		for (short i = 0; i < tamanio; i++)
+			delete vec[i];
+	*/
+	delete[]vec;
+	vec = new short[tamanio];
 	for (short i = 0; i < tamanio; i++)
-	{
 		vec[i] = 0;
-	}
+
 
 }
 
-bool vector::insertarElemento(short i)
+bool vector::insertarElementoPrimero(short i)
 {
 	bool a = false;
 	// 0 , 1 , 2 , 3
@@ -100,11 +166,82 @@ bool vector::insertarElemento(short i)
 	return a;
 }
 
-ostream& operator<<(ostream& sal, const vector& v)
+bool vector::insertarElementoFinal(short i)
 {
+	bool a = false;
+	short aux = tamanio;
+	if (cantidad < tamanio)
+	{
+		vec[(tamanio - 1) - cantidad] = i;
+		cantidad++;
+		a = true;
+	}
+
+	return a;
+}
+
+void vector::mostrarRellenandoOs()
+{
+	cout << " { ";
+	for (short i = 0; i < tamanio; i++)
+	{
+		cout << " [ ";
+		stringstream s; s << vec[i];
+		//cout << "size = " << s.str().size() << endl;
+		if (s.str().size() < 4)//para verificar el tamaño de este numero
+		{
+			for (size_t i = 0; i < 4 - s.str().size(); i++)
+				cout << "0";
+			cout << vec[i];
+		}
+		else
+			cout << vec[i] << "";
+		cout << " ] ";
+		s << "";
+		//s.clear();
+	}
+	cout << " } ";
+}
+
+void vector::mostrarAlreves()
+{
+	cout << " [ ";
+	for (short i = 3; i >= 0; i--)
+		cout << vec[i] << "";
+	cout << " ] ";
+	//cout << endl << endl;
+}
+
+
+void vector::mostrarNormal()
+{
+	cout << " [ ";
+	for (short i = 0; i < 4; i++)
+		cout << vec[i] << "";
+	cout << " ] ";
+	//cout << endl << endl;
+}
+
+void vector::mostrarNormalCasillas() {
+	cout << " { ";
+	for (short i = 0; i < tamanio; i++)
+	{
+		cout << " [ ";
+		cout << vec[i] << "";
+		cout << " ] ";
+	}cout << " } ";
+	//cout << endl << endl;
+}
+
+ostream& operator<<(ostream& sal, vector& v)
+{
+
+	sal << " { ";
 	for (int i = 0; i < v.tamanio; i++)
 	{
-		sal << " ," << v.vec[i] << " , ";
+		sal << " [ ";
+		sal << v.vec[i];
+		sal << " ] ";
 	}
 	sal << endl;
 	return sal;
