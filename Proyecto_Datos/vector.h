@@ -73,6 +73,12 @@ public:
 	void mostrarAlreves();
 	void mostrarNormal();
 	void mostrarNormalCasillas();
+	string retornar_numero_0s();
+	//-------------------METODO PARA OBTENER LA CANTIDAD DE DIGITOS DE UNA POSICION DEL VECTOR----------------------
+
+	int obtener_cantidad_digitos(short num);//metodo para saber cuantos digitos tiene un numero de una posicion del vector
+	string toString();
+	bool llenando_vector_por_digito(short num);
 
 };
 

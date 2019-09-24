@@ -233,6 +233,77 @@ void vector::mostrarNormalCasillas() {
 	//cout << endl << endl;
 }
 
+string vector::retornar_numero_0s()
+{
+	stringstream num;
+
+	for (short i = 0; i < tamanio; i++)
+	{
+		stringstream s; s << vec[i];
+		//cout << "size = " << s.str().size() << endl;
+		if (s.str().size() < 4)//para verificar el tamaño de este numero
+		{
+			for (size_t i = 0; i < 4 - s.str().size(); i++)
+				num << "0";
+
+			num << vec[i];
+		}
+		else
+			num << vec[i];
+
+		//s << "";
+		s.clear();
+	}
+	return num.str();
+}
+
+int vector::obtener_cantidad_digitos(short num)
+{
+	stringstream s;
+	s << num;
+	return s.str().size();
+}
+
+string vector::toString()
+{
+	stringstream todo_numero;
+	//cout << " { ";
+	for (short i = 0; i < tamanio; i++)
+	{
+		//cout << " [ ";
+		stringstream s; s << vec[i];
+
+		//cout << "size = " << s.str().size() << endl;
+		if (s.str().size() < 4)//para verificar el tamaño de este numero
+		{
+			for (size_t i = 0; i < 4 - s.str().size(); i++)
+			{
+				//cout << "0";
+				todo_numero << "0";
+			}
+			//cout << vec[i];
+			todo_numero << vec[i];
+		}
+		else
+		{
+			//cout << vec[i] << "";
+			todo_numero << vec[i];
+		}
+		//cout << " ] ";
+		s << "";
+		//s.clear();
+	}
+	//cout << " } ";
+	return todo_numero.str();
+}
+
+bool vector::llenando_vector_por_digito(short num)
+{
+	//ingresamos 4 digitos cada vez que insertamos un num
+
+	return false;
+}
+
 ostream& operator<<(ostream& sal, vector& v)
 {
 

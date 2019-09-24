@@ -10,23 +10,76 @@ interger::~interger()
 	delete lis;
 }
 
-interger* interger::sumaIntergers(interger num1, interger num2)
+interger interger::multiplicacion_intergers(interger in1, interger in2)
 {
-	interger* resultado = new interger();
-	int cont = 0;
-	if (num1.obtener_cantidad_nodos() > num2.obtener_cantidad_nodos())//el numero 1 es mayor al segundo
-		while (cont <= num1.obtener_cantidad_nodos())
-		{
 
-			cont++;
-		}
-
-	return nullptr;
+	return interger();
 }
+
 
 int interger::obtener_cantidad_nodos()
 {
 	return lis->get_cantidad_nodos();
+}
+
+string interger::operator[](long pos)
+{
+	this->pos = pos;
+	//cout << "pos : " << pos << endl;
+	string ss;
+	if ((pos / 16) > obtener_cantidad_nodos())
+	{
+		cout << toString() << endl;
+		cout << "pos/16 : " << pos / 16 << " , cantidad : " << obtener_cantidad_nodos() << endl;
+		cout << "posicion exede el tamanio del interger" << endl;
+		return "-1";
+	}
+	else
+	{
+		string s;
+		long pos_vector = pos;
+		if (pos_vector <= 15) {
+			s = lis->obtener_nodo(0)->getPtr()->retornar_numero_0s();
+			//cout << " nodo # : " << 0<< endl;
+			//cout << "tama : " << s.size() << endl;
+			ss += s[pos_vector];
+		}
+		else
+		{
+			if (pos > this->obtener_numero_digitos())
+				return "la posicion exede el tamanio del numero\n";
+			else
+			{
+				s = lis->obtener_nodo((pos / 16))->getPtr()->retornar_numero_0s();
+				//cout << " nodo # : " << (pos / 16)  << endl;
+				//cout << "tama : " << s.size() << endl;
+
+				//como acertar en la posicion + de 16
+				//long pos_nodo = (pos / 16 )-1;
+				//if (pos_nodo == 0)
+					//pos_nodo = 1;
+				//cout << "pos_nodo : " << pos_nodo << endl;
+				long num_digitos_nodo_anterior = 16 * (pos / 16);
+				//cout << "numero de digitos , nodo anterior : " << num_digitos_nodo_anterior << endl;
+				long pos_vector = (pos - num_digitos_nodo_anterior);
+				//cout <<" ( "<< pos << " - " << num_digitos_nodo_anterior << " ) -1 = " << pos_vector << endl;
+				//cout << "pos vector : " << pos_vector << endl;
+				if (pos_vector < 0)pos_vector = 0;
+				/*cout << "---------------------------------- I M P R I M I E N D O __ N O D O -------------------------------" << endl;
+				for (size_t i = 0; i < s.size(); i++)
+				{
+					cout << s[i];
+				}cout << endl;
+				cout << "---------------------------------------------------------------------------------------------------" << endl;
+				cout << endl;*/
+				ss += s[pos_vector];
+
+			}
+		}
+
+
+		return ss;
+	}
 }
 
 void interger::mostrarNumero()
@@ -81,6 +134,7 @@ void interger::mostrarNumeroAComoSeAlmacena()
 		*/
 void interger::ConvertirObjeto(string num)//crea la lista enlazada de vectores
 {
+
 	vector v;
 	vector* aux = new vector();//_Creamos un vector de 4 posiciones que contiene elementos dinamicos...
 	bool insercion;
@@ -88,7 +142,6 @@ void interger::ConvertirObjeto(string num)//crea la lista enlazada de vectores
 	cout << "Size : " << num.size() << endl;
 	for (short i = num.size(); i >= 0; i -= 4)// recorremos la entrada en numeros de cuatro en cuatro
 	{
-
 
 		cout << "Size : " << num.size() << endl;
 		//system("pause");
@@ -121,19 +174,77 @@ void interger::ConvertirObjeto(string num)//crea la lista enlazada de vectores
 			cout << "Size : " << num.size() << endl;
 			if (num.size() != 0)
 				numero = short(stoi(num.substr(0, num.size())));
-
+			cout << numero << endl;
 			insercion = aux->insertarElementoFinal(numero);
+			if (insercion == false)//se lleno y quedaron numeros sin almacenarse
+			{
+				cout << "num . size = " << num.size() << endl;
+				if (num.size() == 0)
+				{
+					lis->insertar_elementoPrimero(new vector(*aux));//guardamos el numero anterior
+					break;
+				}
+				else
+				{
+					lis->insertar_elementoPrimero(new vector(*aux));//guardamos el numero anterior
+					cout << "quedo el elemento : " << numero << " , sin almacenarse " << endl;
+					aux->borrarElementos();
+					aux->insertarElementoFinal(numero);
+					aux->mostrarNormalCasillas();
+					lis->insertar_elementoPrimero(new vector(*aux));
+					lis->imprimir_lista();
+					return; break;
+				}
+				//aux->borrarElementos();//borramos los datos del aux para empezar a llenarlo denuevo
+			}
+			else
+			{
+				aux->mostrarNormalCasillas();
+				cout << "<4" << endl << numero << endl;
 
-			aux->mostrarNormalCasillas();
-			cout << "<4" << endl << numero << endl;
-
-			//lis->insertar_elemento(new vector(*aux));//creamos un vector nuevo con base al que se lleno recientemente 
-			lis->insertar_elementoPrimero(new vector(*aux));
-			lis->imprimir_lista();
-			aux->borrarElementos();//borramos los datos del aux para empezar a llenarlo denuevo
-
+				//lis->insertar_elemento(new vector(*aux));//creamos un vector nuevo con base al que se lleno recientemente 
+				lis->insertar_elementoPrimero(new vector(*aux));
+				lis->imprimir_lista();
+				aux->borrarElementos();//borramos los datos del aux para empezar a llenarlo denuevo
+			}
 
 		}
 	}
 
+
+
+}
+
+string interger::toString()
+{
+	nodo* aux = lis->getPrimero();
+	stringstream s;
+	while (aux)
+	{
+		s << aux->getPtr()->toString();
+		aux = aux->getSig();
+	}
+	return s.str();
+}
+
+void interger::guardar_numero_txt()
+{
+	ofstream salida;
+
+	salida.open("../interger.txt");
+	salida << this->toString();
+	salida.close();
+}
+
+interger* interger::cargar_numero()
+{
+	ifstream entrada;
+
+	while (entrada.good())
+	{
+
+	}
+
+
+	return nullptr;
 }
