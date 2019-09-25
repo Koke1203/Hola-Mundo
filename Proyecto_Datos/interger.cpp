@@ -7,14 +7,9 @@ interger::interger() {
 interger::~interger()
 {
 	lis->~lista_doble_enlazada();
-	delete lis;
+	//delete lis;
 }
 
-interger interger::multiplicacion_intergers(interger in1, interger in2)
-{
-
-	return interger();
-}
 
 
 int interger::obtener_cantidad_nodos()
@@ -82,6 +77,13 @@ string interger::operator[](long pos)
 	}
 }
 
+interger& interger::operator*(interger in1)
+{
+
+		
+	
+}
+
 void interger::mostrarNumero()
 {
 	nodo* aux = lis->getUltimo();
@@ -98,6 +100,10 @@ void interger::mostrarNumero()
 				aux->getPtr()->mostrarAlreves();
 				aux = aux->getSig();
 			}*/
+}
+
+void interger::mostrar_resultado_numero_multi()
+{
 }
 
 void interger::mostrarNumeroRellenandoOs()
@@ -227,24 +233,75 @@ string interger::toString()
 	return s.str();
 }
 
-void interger::guardar_numero_txt()
+void interger::guardar_numero_txt(string nombre)
 {
-	ofstream salida;
-
-	salida.open("../interger.txt");
+	ofstream salida(nombre);
 	salida << this->toString();
 	salida.close();
 }
 
-interger* interger::cargar_numero()
+void interger::cargar_numero(string nombre)
 {
-	ifstream entrada;
+	ifstream entrada(nombre);
+	short cont = 1;
+	vector* aux = new vector();
+	bool insercion = true;
+	char digi;
+	string numero_4_digitos = "";
 
-	while (entrada.good())
+
+	do {
+		if (!entrada.eof())
+			entrada >> digi;
+		else
+			break;
+		cout << "digi: " << digi << endl;
+		numero_4_digitos += digi;
+		digi = ' ';
+		cout << "numero 4 digi : " << numero_4_digitos << endl;
+		if (cont == 4)//llenamos un numero
+		{
+			cout << "numero captado : " << numero_4_digitos << endl;
+
+			short num = atoi(numero_4_digitos.c_str());
+			cout << " num short = " << num << endl;
+			insercion = aux->insertarElementoPrimero(num);
+			if (insercion == false)//se lleno el vector
+			{
+
+				aux->mostrarNormalCasillas();
+				lis->insertar_elementoPrimero(new vector(*aux, bool()));
+				aux->borrarElementos();
+				aux->insertarElementoPrimero(num);
+				cout << "toString : " << lis->imprimir_lista() << endl;
+				system("pause");
+			}
+			num = 0;
+			numero_4_digitos = "";// se setea el valor del string
+
+			cont = 0;
+		}
+
+		cont++;
+	} while (entrada.good() and !entrada.eof());
+	if (aux->getTam() == 4 and numero_4_digitos != "")//quedaron numeros sin insertarse
 	{
+		cout << "ultimos digitos ojas : " << numero_4_digitos << endl;
+		lis->insertar_elementoPrimero(new vector(*aux, bool()));
+		aux->borrarElementos();
+
+		aux->insertarElementoPrimero(atoi(numero_4_digitos.c_str()));
+		cout << "toString _  : " << aux->toString() << endl;
+
+		lis->insertar_elementoPrimero(new vector(*aux, bool()));
+
+		cout << "toString : " << lis->imprimir_lista() << endl;
 
 	}
+	aux->mostrarNormalCasillas();
 
-
-	return nullptr;
+	cout << "--------------------------------------------------------------------" << endl;
+	lis->imprimir_lista();
+	cout << "--------------------------------------------------------------------" << endl;
+	system("pause");
 }

@@ -123,12 +123,14 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="cadena.h" />
     <ClInclude Include="interger.h" />
     <ClInclude Include="lista.h" />
     <ClInclude Include="nodo.h" />
     <ClInclude Include="vector.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="cadena.cpp" />
     <ClCompile Include="interger.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="nodo.cpp" />

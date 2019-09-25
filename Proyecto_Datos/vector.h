@@ -33,6 +33,7 @@ public:
 
 	vector();
 
+	vector(const vector& vect, bool);
 	vector(const vector& vect);//: tamanio(vect.tamanio), cantidad(vect.cantidad), vec(new short(vect.tamanio))
 
 	~vector();
@@ -67,7 +68,7 @@ public:
 	void borrarElementos();
 	bool insertarElementoPrimero(short i);
 	bool insertarElementoFinal(short i);
-
+	bool insertar_conforme_se_llena(short i);
 	//----------------------__I M P R E S I O N__----------------------------------------
 	void mostrarRellenandoOs();
 	void mostrarAlreves();
