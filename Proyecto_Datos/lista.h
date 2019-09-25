@@ -27,6 +27,7 @@ public:
 	void insertar_elemento(vector* v);
 	void borrar_inicio();
 	void borrar_final();
+	nodo* obtener_nodo(long indice);
 	vector* buscar_elemento(vector& v);
 	bool borrar_elemento(vector& elemento);
 	//falta borrar elemento por indice
@@ -140,6 +141,28 @@ inline void lista_doble_enlazada::borrar_final()
 	delete actual->getSig();
 	actual->setSig(NULL);
 
+}
+
+inline nodo* lista_doble_enlazada::obtener_nodo(long indice)
+{
+	actual = inicio;
+	long cont = 0;
+	//cout << "indice  : " << indice << endl;
+	/*while (actual)
+	{
+		if (cont == indice)
+			return actual;
+		actual = actual->getSig();
+		cont++;
+	}*/
+	//cout << "cantidad nodos : " << cantidad_nodos << endl;
+	while (cont < cantidad_nodos - 1 and cont != indice and actual)
+	{
+		//cout << "cont = " <<cont<< endl;
+		actual = actual->getSig();
+		++cont;
+	}
+	return actual;
 }
 
 
