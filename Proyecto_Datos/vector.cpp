@@ -14,6 +14,32 @@ vector::vector()
 
 }
 
+vector::vector(const vector& vect, bool)
+{
+
+	tamanio = vect.tamanio;
+	cantidad = vect.cantidad;
+	vec = new short[vect.tamanio];
+	cout << "--------------------IMPRIMIENDO DEL VECTOR RECIBIDO---------------------------" << endl;
+	for (short i = tamanio - 1; i >= 0; i--)
+		cout << vect.vec[i] << " , ";
+
+	cout << endl;
+	//system("pause");
+	for (short i = tamanio - 1; i >= 0; i--)
+	{
+		if (vect.vec[i] == 0)
+			vec[i] = 0;
+		else
+			vec[i] = vect.vec[i];
+	}
+	/*for (short i = vect.tamanio - 1 - vect.cantidad; i >= 0; i--)
+	{
+		vec[i] = 0;
+	}*/
+
+
+}
 vector::vector(const vector& vect)
 {
 
@@ -178,6 +204,11 @@ bool vector::insertarElementoFinal(short i)
 	}
 
 	return a;
+}
+
+bool vector::insertar_conforme_se_llena(short i)
+{
+	return false;
 }
 
 void vector::mostrarRellenandoOs()
