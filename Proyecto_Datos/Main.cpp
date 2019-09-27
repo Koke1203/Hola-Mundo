@@ -1,4 +1,3 @@
-
 #include"interger.h"
 
 int main()
