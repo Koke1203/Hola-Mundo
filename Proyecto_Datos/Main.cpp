@@ -7,36 +7,48 @@ int main()
 {
 
 	interger in1;
-	in1.ConvertirObjeto("12345676");
+	in1.ConvertirObjeto("164563131154544564654656");
+	//
 	interger in2;
-	in2.ConvertirObjeto("12");
-	vector* result = in1.obtener_nodo(0); 
-
-	cout << endl << endl << endl << endl << endl << endl << endl << endl << endl << endl << endl << endl << endl << endl << endl << endl;
-	cout << endl << endl << endl;
+	in2.ConvertirObjeto("164563131154544564654656");
+	//
+	cout << endl << endl << endl << endl << endl << endl << endl << endl << endl << endl << endl << endl << endl << endl;
+	//
+	if (!EsIgual(in1, in2)) {
+		cout << "FALSE, Es diferente " << endl;
+	}
+	else {
+		cout << "TRUE, Son iguales!!!" << endl;
+	}
 	
-	//cout<<"Resultado del primer digito del primer nodo: "<<result->mostrarNormal()<<endl;
 
-	result->mostrarNormal();
-
-	/*if (!EsIgual(in1, in2)) {
-		cout << "Numeros son diferentes!!" << endl;
+/*
+	for (size_t i = 0; i < in1.obtener_numero_digitos(); i++)
+	{
+		cout << " i : "<<i<<"-> " <<in1[i] << endl;
 	}*/
-	
-	/*interger *res=NULL;
 
-	res = res->mult(in1, in2);
+	//vector* v = in1.obtener_nodo(0);
 
-	cout << ".--------------------." << endl;
-	cout << res->toString() << endl;*/
-	
-	/*
-	Probando la sobrecarga con un tipo de dato diferente, en este caso int.
-	int dato = 2397248;
-	interger* in = new interger(dato);
-	in->mostrarNumero();*/
+	//cout << "vector capturado" << endl;
+	//v->mostrarNormalCasillas();
+	//cout << endl;
 
-	
+	//cout << "imprimir primer Casilla : " << v->getPrimero() << endl;
+	//cout << endl << "imprimir segunda Casilla : " << v->getSegundo() << endl;
+	//cout << endl << "imprimir tercera Casilla : " << v->getTercero() << endl;
+	//cout << endl << "imprimir cuarta Casilla : " << v->getCuarto() << endl;
+
+	//cout << "_---------------------usar metodo------------------" << endl;
+
+	//cout << "posicion 0" << endl;
+	//cout<<v->getNumerosPosicion(0)<<endl;
+	//cout << "-------------imprimiendo interger--------------------" << endl;
+	//for (size_t i = 0; i < in1.obtener_numero_digitos(); i++)
+	//{
+	//	cout << in1[i] << endl;
+	//}
+
 	system("pause");
 	return 0;
 }
@@ -47,9 +59,9 @@ bool EsIgual(interger num1, interger num2) {
 	if (num1.digitos_numero() != num2.digitos_numero()) {  //automaticamente se sabe que son diferentes
 		return es_igual;
 	}
-	else if(num1.digitos_numero() == num2.digitos_numero()){ //se sabe que tiene el mismo tamanio
+	else if (num1.digitos_numero() == num2.digitos_numero()) { //se sabe que tiene el mismo tamanio
 		vector vector1, vector2;
-		for (long i = 0; i < num1.digitos_numero();i++) {
+		for (short i = 0; i < num1.obtener_cantidad_nodos();i++) {
 			//obtengo cada contenido de cada nodo de la lista, por medio de la clase vector, luego voy comparando eso.
 			vector1 = num1.obtener_nodo(0);
 			vector2 = num2.obtener_nodo(0);

@@ -13,6 +13,8 @@ nodo& nodo::operator=(nodo& a)
 	return *this;
 }
 
+
+
 //-----------------------------------SobreCargaOperadores  Fin  -----------------------------------------
 
 nodo::nodo()
@@ -33,10 +35,12 @@ nodo::nodo(vector* ptr)
 
 //------------------Mutadores-----------------------
 
+
 void nodo::setVec(vector* ptr)
 {
 	this->vec = ptr;
 }
+
 
 void nodo::setSig(nodo* sig)
 {
