@@ -10,8 +10,6 @@ interger::~interger()
 	//delete lis;
 }
 
-
-
 int interger::obtener_cantidad_nodos()
 {
 	return lis->get_cantidad_nodos();
@@ -22,7 +20,7 @@ string interger::operator[](long pos)
 	this->pos = pos;
 	//cout << "pos : " << pos << endl;
 	string ss;
-	if ((pos / 16) > obtener_cantidad_nodos())
+	if ((pos / 16) > obtener_cantidad_nodos())// pos/16 -> retorna la cantidad de nodos en la lista
 	{
 		cout << toString() << endl;
 		cout << "pos/16 : " << pos / 16 << " , cantidad : " << obtener_cantidad_nodos() << endl;
@@ -77,12 +75,6 @@ string interger::operator[](long pos)
 	}
 }
 
-interger& interger::operator*(interger in1)
-{
-
-		
-	
-}
 
 void interger::mostrarNumero()
 {
@@ -140,7 +132,7 @@ void interger::mostrarNumeroAComoSeAlmacena()
 		*/
 void interger::ConvertirObjeto(string num)//crea la lista enlazada de vectores
 {
-
+	cont = num.size();
 	vector v;
 	vector* aux = new vector();//_Creamos un vector de 4 posiciones que contiene elementos dinamicos...
 	bool insercion;
@@ -303,5 +295,17 @@ void interger::cargar_numero(string nombre)
 	cout << "--------------------------------------------------------------------" << endl;
 	lis->imprimir_lista();
 	cout << "--------------------------------------------------------------------" << endl;
+
 	system("pause");
+}
+
+
+//metodo que obtiene la cantidad de digitos del numero
+int interger::digitos_numero() {
+	return cont;
+}
+
+//devuelvo el vector que contiene la posicion digitada del nodo
+vector* interger::obtener_nodo(int pos) {
+	return lis->obtener_nodo(pos)->getPtr();
 }

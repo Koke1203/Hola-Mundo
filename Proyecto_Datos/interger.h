@@ -17,6 +17,7 @@ private:
 	int cantidad_nodos;
 	long pos;
 	int hola;
+	int cont;
 public:
 
 	interger();
@@ -25,7 +26,9 @@ public:
 
 
 	int obtener_cantidad_nodos();
+
 	string operator[](long pos);
+
 	long obtener_numero_digitos() {
 		return obtener_cantidad_nodos() * 16;
 	}
@@ -50,6 +53,10 @@ public:
 
 	void guardar_numero_txt(string nombre_archivo);
 	void cargar_numero(string nombre_archivo);
+
+	int digitos_numero();
+
+	vector* obtener_nodo(int pos);
 
 
 	//------------------------------------multiplicacion de intergers-----------------------------------------------

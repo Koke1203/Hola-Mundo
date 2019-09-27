@@ -21,6 +21,20 @@ private:
 	short carry;
 public:
 
+	short getNumerosPosicion(int pos) {
+		if (pos == 0) {
+			return getPrimero();
+		}
+		else if (pos == 1) {
+			return getSegundo();
+		}
+		else if (pos == 2) {
+			return getTercero();
+		}
+		else if(pos==3){
+			return getCuarto();
+		}
+	}
 
 	void set_carry(short c)
 	{
