@@ -12,23 +12,27 @@ class interger
 {
 
 private:
-
 	lista_doble_enlazada* lis;
 	int cantidad_nodos;
 	long pos;
 	int hola;
-public:
+	int cont;
 
+public:
 	interger();
+
+	interger(int valor);
+	interger(long valor);
 	
 	~interger();
 
-
+	vector* obtener_nodo(int pos);
 	int obtener_cantidad_nodos();
 	string operator[](long pos);
 	long obtener_numero_digitos() {
 		return obtener_cantidad_nodos() * 16;
 	}
+	int digitos_numero();
 
 	operator int()
 	{

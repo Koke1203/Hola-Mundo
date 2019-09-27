@@ -51,6 +51,7 @@ public:
 	short getTercero();
 	short getSegundo();
 	short getPrimero();
+	short getNumerosPosicion(int pos);
 
 	short getTam();
 	short getCant()
@@ -80,7 +81,6 @@ public:
 	int obtener_cantidad_digitos(short num);//metodo para saber cuantos digitos tiene un numero de una posicion del vector
 	string toString();
 	bool llenando_vector_por_digito(short num);
-
 };
 
 
