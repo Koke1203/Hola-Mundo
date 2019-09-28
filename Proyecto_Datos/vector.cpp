@@ -114,22 +114,6 @@ vector* vector::operator=(const vector* a2)
 	return this; //Retornar una referencia es un *this.
 }
 
-short vector::getNumerosPosicion(int pos) {
-	if (pos == 0) {
-		return getPrimero();
-	}
-	else if (pos == 1) {
-		return getSegundo();
-	}
-	else if (pos == 2) {
-		return getTercero();
-	}
-	else {
-		return getCuarto();
-	}
-}
-
-
 short vector::getCuarto()
 {
 	return vec[3];
@@ -353,6 +337,7 @@ bool vector::llenando_vector_por_digito(short num)
 
 ostream& operator<<(ostream& sal, vector& v)
 {
+
 	sal << " { ";
 	for (int i = 0; i < v.tamanio; i++)
 	{

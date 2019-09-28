@@ -147,13 +147,24 @@ inline nodo* lista_doble_enlazada::obtener_nodo(long indice)
 {
 	actual = inicio;
 	long cont = 0;
+	//cout << "indice  : " << indice << endl;
+	/*while (actual)
+	{
+		if (cont == indice)
+			return actual;
+		actual = actual->getSig();
+		cont++;
+	}*/
+	//cout << "cantidad nodos : " << cantidad_nodos << endl;
 	while (cont < cantidad_nodos - 1 and cont != indice and actual)
 	{
+		//cout << "cont = " <<cont<< endl;
 		actual = actual->getSig();
 		++cont;
 	}
 	return actual;
 }
+
 
 inline vector* lista_doble_enlazada::buscar_elemento(vector& dato)
 {
@@ -362,6 +373,11 @@ inline nodo* lista_doble_enlazada::getUltimo()
 
 	return aux;
 }
+
+
+
+
+
 
 
 #endif  // FOO_BAR_BAZ_H_

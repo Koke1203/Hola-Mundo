@@ -1,4 +1,12 @@
 
+
+
+// nodo.h
+// Autor: Gabriel Barboza Carvajal
+// Descripción: clase nodo que se utiliza para ligar los demas y asi generar la lista enlazada generica. 
+
+//#pragma once
+
 #ifndef NODO_H_
 #define NODO_H_
 #include"vector.h"

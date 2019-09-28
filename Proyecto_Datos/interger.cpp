@@ -2,23 +2,6 @@
 
 interger::interger() {
 	lis = new lista_doble_enlazada();
-	int cont = 0;
-}
-
-//Convierte un entero a interger 
-interger::interger(int dato) {
-	lis = new lista_doble_enlazada();
-	string conversion = "";
-	conversion = to_string(dato);
-	ConvertirObjeto(conversion);
-}
-
-//Convierte un long a interger
-interger::interger(long dato) {
-	lis = new lista_doble_enlazada();
-	string conversion = "";
-	conversion = to_string(dato);
-	ConvertirObjeto(conversion);
 }
 
 interger::~interger()
@@ -26,6 +9,8 @@ interger::~interger()
 	lis->~lista_doble_enlazada();
 	//delete lis;
 }
+
+
 
 int interger::obtener_cantidad_nodos()
 {
@@ -37,7 +22,7 @@ string interger::operator[](long pos)
 	this->pos = pos;
 	//cout << "pos : " << pos << endl;
 	string ss;
-	if ((pos / 16) > obtener_cantidad_nodos())
+	if ((pos / 16) > obtener_cantidad_nodos())// pos/16 -> retorna la cantidad de nodos en la lista
 	{
 		cout << toString() << endl;
 		cout << "pos/16 : " << pos / 16 << " , cantidad : " << obtener_cantidad_nodos() << endl;
@@ -86,13 +71,12 @@ string interger::operator[](long pos)
 
 			}
 		}
+
+
 		return ss;
 	}
 }
 
-//interger& interger::operator*(interger in1)
-//{
-//}
 
 void interger::mostrarNumero()
 {
@@ -150,7 +134,7 @@ void interger::mostrarNumeroAComoSeAlmacena()
 		*/
 void interger::ConvertirObjeto(string num)//crea la lista enlazada de vectores
 {
-	cont = num.size();
+
 	vector v;
 	vector* aux = new vector();//_Creamos un vector de 4 posiciones que contiene elementos dinamicos...
 	bool insercion;
@@ -158,6 +142,7 @@ void interger::ConvertirObjeto(string num)//crea la lista enlazada de vectores
 	cout << "Size : " << num.size() << endl;
 	for (short i = num.size(); i >= 0; i -= 4)// recorremos la entrada en numeros de cuatro en cuatro
 	{
+
 		cout << "Size : " << num.size() << endl;
 		//system("pause");
 		if (num.size() >= 4)
@@ -225,6 +210,9 @@ void interger::ConvertirObjeto(string num)//crea la lista enlazada de vectores
 
 		}
 	}
+
+
+
 }
 
 string interger::toString()
@@ -309,8 +297,10 @@ void interger::cargar_numero(string nombre)
 	cout << "--------------------------------------------------------------------" << endl;
 	lis->imprimir_lista();
 	cout << "--------------------------------------------------------------------" << endl;
+
 	system("pause");
 }
+
 
 //metodo que obtiene la cantidad de digitos del numero
 int interger::digitos_numero() {

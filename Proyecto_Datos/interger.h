@@ -12,27 +12,26 @@ class interger
 {
 
 private:
+
 	lista_doble_enlazada* lis;
 	int cantidad_nodos;
 	long pos;
 	int hola;
 	int cont;
-
 public:
-	interger();
 
-	interger(int valor);
-	interger(long valor);
+	interger();
 	
 	~interger();
 
-	vector* obtener_nodo(int pos);
+
 	int obtener_cantidad_nodos();
+
 	string operator[](long pos);
+
 	long obtener_numero_digitos() {
 		return obtener_cantidad_nodos() * 16;
 	}
-	int digitos_numero();
 
 	operator int()
 	{
@@ -54,6 +53,10 @@ public:
 
 	void guardar_numero_txt(string nombre_archivo);
 	void cargar_numero(string nombre_archivo);
+
+	int digitos_numero();
+
+	vector* obtener_nodo(int pos);
 
 
 	//------------------------------------multiplicacion de intergers-----------------------------------------------
