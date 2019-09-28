@@ -1,5 +1,3 @@
-
-
 #ifndef VECTOR_H_
 #include<iostream>
 using namespace std;

@@ -4,10 +4,10 @@ int main()
 {
 	//A partir de 10 digitos ya sirve 
 	interger in1;
-	in1.ConvertirObjeto("1234");
+	in1.ConvertirObjeto("4564654654545464646546546546546546546546544464648");
 	//
 	interger in2;
-	in2.ConvertirObjeto("1233");
+	in2.ConvertirObjeto("4564654654545464646546546546546546546546544464648");
 	//
 	cout << endl << endl << endl << endl << endl << endl << endl << endl << endl << endl << endl << endl << endl << endl;
 	//
@@ -27,7 +27,9 @@ int main()
 
 	//vector* v = in1.obtener_nodo(0);
 
-	res = res->mult(in1, in2);
+	//cout << "vector capturado" << endl;
+	//v->mostrarNormalCasillas();
+	//cout << endl;
 
 	//cout << "imprimir primer Casilla : " << v->getPrimero() << endl;
 	//cout << endl << "imprimir segunda Casilla : " << v->getSegundo() << endl;

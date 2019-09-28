@@ -1,6 +1,5 @@
-#pragma once
-
-
+#ifndef INTERGER_H_
+#define INTERGER_H_
 #include"lista.h"
 #include"vector.h"
 #include<string>
@@ -8,8 +7,7 @@
 #include<fstream>
 #include"cadena.h"
 using namespace std;
-class interger
-{
+class interger{
 
 private:
 
@@ -52,7 +50,6 @@ public:
 	void mostrarNumeroRellenandoOs();
 	void mostrarNumeroAComoSeAlmacena();
 	void ConvertirObjeto(string s1);
-
 
 	//--------------------METODO PARA GUARDAR EL INTERGER EN UN TXT-------------------
 
