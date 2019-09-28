@@ -38,7 +38,14 @@ public:
 		return hola;
 	}
 
-	interger& operator* (interger in1);
+	//Sobrecarga de operadores de comparacion
+	bool operator==(interger num2);
+	bool operator!=(interger num2);
+	bool operator>(interger num2);
+	bool operator<(interger num2);
+	bool operator>=(interger num2);
+	bool operator<=(interger num2);
+	//------------------------------------
 
 	void mostrarNumero();
 	void mostrar_resultado_numero_multi();
