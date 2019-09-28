@@ -125,8 +125,10 @@ inline void lista_doble_enlazada::borrar_inicio()
 }
 
 
+
 inline void lista_doble_enlazada::borrar_final()
 {
+	nodo* ant = nullptr;
 	if (inicio != NULL and inicio->getSig() == nullptr)
 	{
 		delete inicio;
@@ -135,11 +137,16 @@ inline void lista_doble_enlazada::borrar_final()
 	else
 	{
 		actual = inicio;
+
 		while (actual->getSig() != NULL)
+		{
+			ant = actual;
 			actual = actual->getSig();
+		}
 	}
-	delete actual->getSig();
-	actual->setSig(NULL);
+	cout << "elemento a borrar " << actual->getPtr()->toString() << endl;
+	delete actual;
+	ant->setSig(NULL);
 
 }
 
@@ -147,18 +154,8 @@ inline nodo* lista_doble_enlazada::obtener_nodo(long indice)
 {
 	actual = inicio;
 	long cont = 0;
-	//cout << "indice  : " << indice << endl;
-	/*while (actual)
-	{
-		if (cont == indice)
-			return actual;
-		actual = actual->getSig();
-		cont++;
-	}*/
-	//cout << "cantidad nodos : " << cantidad_nodos << endl;
 	while (cont < cantidad_nodos - 1 and cont != indice and actual)
 	{
-		//cout << "cont = " <<cont<< endl;
 		actual = actual->getSig();
 		++cont;
 	}

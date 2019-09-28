@@ -300,13 +300,16 @@ bool interger::operator==(interger num2) {
 	else if (digitos_numero() == num2.digitos_numero()) { //se sabe que tiene el mismo tamanio
 		if (digitos_numero() <= 9) {    //compara para numeros menores o iguales a nueve digitos.
 			string aux, aux2;
-			for (size_t i = 0; i < obtener_numero_digitos(); i++) {
-				aux += this[i];
-			}
+			string nodo = lis->getPrimero()->getPtr()->toString();
+			cout << nodo << endl;
+			//for (size_t i = 0; i < obtener_numero_digitos(); i++) {
+			//	//aux += ;
+			//}
+			cout << "aux : " << aux << endl;
 			for (size_t i = 0; i < num2.obtener_numero_digitos(); i++) {
 				aux2 += num2[i];
 			}
-			if (aux.compare(aux2) == 0) {
+			if (nodo.compare(aux2) == 0) {
 				es_igual = true;
 			}
 			else {
