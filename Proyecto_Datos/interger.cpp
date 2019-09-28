@@ -33,8 +33,6 @@ string interger::operator[](long pos)
 		long pos_vector = pos;
 		if (pos_vector <= 15) {
 			s = lis->obtener_nodo(0)->getPtr()->retornar_numero_0s();
-			//cout << " nodo # : " << 0<< endl;
-			//cout << "tama : " << s.size() << endl;
 			ss += s[pos_vector];
 		}
 		else
@@ -44,27 +42,9 @@ string interger::operator[](long pos)
 			else
 			{
 				s = lis->obtener_nodo((pos / 16))->getPtr()->retornar_numero_0s();
-				//cout << " nodo # : " << (pos / 16)  << endl;
-				//cout << "tama : " << s.size() << endl;
-
-				//como acertar en la posicion + de 16
-				//long pos_nodo = (pos / 16 )-1;
-				//if (pos_nodo == 0)
-					//pos_nodo = 1;
-				//cout << "pos_nodo : " << pos_nodo << endl;
 				long num_digitos_nodo_anterior = 16 * (pos / 16);
-				//cout << "numero de digitos , nodo anterior : " << num_digitos_nodo_anterior << endl;
 				long pos_vector = (pos - num_digitos_nodo_anterior);
-				//cout <<" ( "<< pos << " - " << num_digitos_nodo_anterior << " ) -1 = " << pos_vector << endl;
-				//cout << "pos vector : " << pos_vector << endl;
 				if (pos_vector < 0)pos_vector = 0;
-				/*cout << "---------------------------------- I M P R I M I E N D O __ N O D O -------------------------------" << endl;
-				for (size_t i = 0; i < s.size(); i++)
-				{
-					cout << s[i];
-				}cout << endl;
-				cout << "---------------------------------------------------------------------------------------------------" << endl;
-				cout << endl;*/
 				ss += s[pos_vector];
 
 			}
@@ -311,36 +291,23 @@ bool interger::operator==(interger num2) {
 		return es_igual;
 	}
 	else if (digitos_numero() == num2.digitos_numero()) { //se sabe que tiene el mismo tamanio
-		if (digitos_numero()<=9) {
-			vector vec1,vec2;
-			vec1 = obtener_nodo(0);
-			vec2 = num2.obtener_nodo(0);
-			string cadena_numero1;
-			string cadena_numero2;
-
-			//obtengo los numeros
-			cadena_numero1 += to_string(vec1.getNumerosPosicion(0));
-			cadena_numero1 += to_string(vec1.getNumerosPosicion(1));
-			cadena_numero1 += to_string(vec1.getNumerosPosicion(2));
-			cadena_numero1 += to_string(vec1.getNumerosPosicion(3));
-			//obtengo los numeros del segundo
-			cadena_numero2 += to_string(vec2.getPrimero());
-			cadena_numero2 += to_string(vec2.getSegundo());
-			cadena_numero2 += to_string(vec2.getTercero());
-			cadena_numero2 += to_string(vec2.getCuarto());
-			for (int i=0;i < cadena_numero1.size();i++) {
-				if (cadena_numero1[i]==cadena_numero2[i]) {
-					cout << "Numero de la cadena en la posicion: "<<i<<":   "<<cadena_numero1[i] << endl;
-					es_igual=true;
-				}
-				else {
-					es_igual = false;
-					return es_igual;
-				}
+		if (digitos_numero() <= 9) {    //compara para numeros menores o iguales a nueve digitos.
+			string aux, aux2;
+			for (size_t i = 0; i < obtener_numero_digitos(); i++) {
+				aux += this[i];
 			}
-
+			for (size_t i = 0; i < num2.obtener_numero_digitos(); i++) {
+				aux2 += num2[i];
+			}
+			if (aux.compare(aux2) == 0) {
+				es_igual = true;
+			}
+			else {
+				es_igual = false;
+				return es_igual;
+			}
 		}
-		else if(digitos_numero()>9){
+		else if (digitos_numero() > 9) {    //compara para numeros mayores o iguales a 10 digitos.
 			vector vector1, vector2;
 			for (long i = 0; i < obtener_cantidad_nodos();i++) {
 				//obtengo cada contenido de cada nodo de la lista, por medio de la clase vector, luego voy comparando eso.
@@ -364,21 +331,40 @@ bool interger::operator==(interger num2) {
 bool interger::operator!=(interger num2) {
 	bool es_igual = false;
 	if (cont != num2.digitos_numero()) {  //automaticamente se sabe que son diferentes
+		es_igual = true;
 		return es_igual;
 	}
 	else if (digitos_numero() == num2.digitos_numero()) { //se sabe que tiene el mismo tamanio
-		vector vector1, vector2;
-		for (long i = 0; i < obtener_cantidad_nodos();i++) {
-			//obtengo cada contenido de cada nodo de la lista, por medio de la clase vector, luego voy comparando eso.
-			vector1 = obtener_nodo(i);
-			vector2 = num2.obtener_nodo(i);
-			for (short i = 0; i < 4;i++) {
-				if (vector1.getNumerosPosicion(i) == vector2.getNumerosPosicion(i)) {
-					es_igual = false;
-				}
-				else {
-					es_igual = true;
-					return es_igual;
+		if (digitos_numero() <= 9) {
+			string aux, aux2;
+			for (size_t i = 0; i < obtener_numero_digitos(); i++) {
+				aux += this[i];
+			}
+			for (size_t i = 0; i < num2.obtener_numero_digitos(); i++) {
+				aux2 += num2[i];
+			}
+			if (aux.compare(aux2) == 0) {
+				es_igual = false;
+			}
+			else {
+				es_igual = true;
+				return es_igual;
+			}
+		}
+		else if (digitos_numero() > 9) {
+			vector vector1, vector2;
+			for (long i = 0; i < obtener_cantidad_nodos();i++) {
+				//obtengo cada contenido de cada nodo de la lista, por medio de la clase vector, luego voy comparando eso.
+				vector1 = obtener_nodo(i);
+				vector2 = num2.obtener_nodo(i);
+				for (short i = 0; i < 4;i++) {
+					if (vector1.getNumerosPosicion(i) != vector2.getNumerosPosicion(i)) {
+						es_igual = false;
+					}
+					else {
+						es_igual = true;
+						return es_igual;
+					}
 				}
 			}
 		}

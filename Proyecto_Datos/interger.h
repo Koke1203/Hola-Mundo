@@ -1,6 +1,5 @@
-#pragma once
-
-
+#ifndef INTERGER_H_
+#define INTERGER_H_
 #include"lista.h"
 #include"vector.h"
 #include<string>
@@ -8,8 +7,7 @@
 #include<fstream>
 #include"cadena.h"
 using namespace std;
-class interger
-{
+class interger{
 
 private:
 
@@ -52,7 +50,6 @@ public:
 	void mostrarNumeroRellenandoOs();
 	void mostrarNumeroAComoSeAlmacena();
 	void ConvertirObjeto(string s1);
-
 
 	//--------------------METODO PARA GUARDAR EL INTERGER EN UN TXT-------------------
 
@@ -174,74 +171,17 @@ public:
 				//se verifica que la cantidad de digitos del primer y segundo numero sean mayores a 0
 				//cout << "x : " << x << endl;
 				if ((x >= 0) && (y >= 0)) {
-
-					//multiplica el ultimo numero del segundo numero con el ultimo del primer numero
-					//como se hace a pie , como se aprende en la escuela
-					//
-
-					//podriamos multiplicar un short de 4 digitos por otro short de 4 digitos y almacenar el valor en un int
-					n = (num(a[x]) * num(b[y])) + carry;/*
-					cout << "Carry : " << carry << endl;
-					cout << "num(a) : " << num(a[x]) << " x " << "num(b) : " << num(b[y]) << " = " << n << endl;*/
-					mat[i][j] = n % 10;// podriamos quitar los equivalentes a usar 8 - 9 digitos de una vez , por que aqui
-					//solamentes se usan 2 digitos por posicion de la matriz...
-					//ver este asunto a ver que
-					/*cout << "mat[ " << i << " ] " << "[ " << j << " ] " << mat[i][j] << endl;
-					cout << "-----------------------------------------------------------------------------------" << endl;
-					cout << "--------------- I M P R E S I O N ___  DE __ LA __ M A T R I Z ----------------------" << endl;
-
-					for (int i = 0; i < row; ++i) {
-						for (int j = 0; j < col; ++j) {
-
-							cout << " [ " << mat[i][j] << " ] ";
-
-						}
-						cout << endl;
-					}*/
-
-
+					n = (num(a[x]) * num(b[y])) + carry;
+					mat[i][j] = n % 10;
 					carry = getCarry(n);
-					/*cout << "Carry : " << carry << endl;
-					cout << "-----------------------------------------------------------------------------------" << endl;
-					system("pause");*/
 				}
 				else if ((x >= -1) && (y >= -1)) {
 					mat[i][j] = carry;
-					/*			cout << "mat[ " << i << " ] " << "[ " << j << " ] " << mat[i][j] << endl;
-
-								cout << "-----------------------------------------------------------------------------------" << endl;
-								cout << "--------------- I M P R E S I O N ___  DE __ LA __ M A T R I Z ----------------------" << endl;
-
-								for (int i = 0; i < row; ++i) {
-									for (int j = 0; j < col; ++j) {
-
-										cout << " [ " << mat[i][j] << " ] ";
-
-									}
-									cout << endl;
-								}
-								cout << "-----------------------------------------------------------------------------------" << endl; system("pause");
-						*/
 				}
 				x = x - 1;
 			}
 			y = y - 1;
 		}
-
-
-		//cout << "--------------- I M P R E S I O N ___  DE __ LA __ M A T R I Z ----------------------" << endl;
-
-		//for (int i = 0; i < row; ++i) {
-		//	for (int j = 0; j < col; ++j) {
-		//		
-		//		cout << " [ " << mat[i][j] << " ] ";
-
-		//	}
-		//	cout << endl;
-		//}
-
-		//cout << "----------------------------------------------------------------------------------------" << endl;
-
 
 		//cout << "_----------------------------------- O T R O ___ M O D U L O _----------------------------" << endl;
 		carry = 0;
@@ -251,7 +191,6 @@ public:
 		for (int i = 0; i < row; ++i) {
 			for (int j = col - 1; j >= 0; --j) {
 				sum_arr[j] += (mat[i][j]);
-				//cout << "sum_arr " << sum_arr[j] << endl;
 			}
 		}
 
@@ -276,15 +215,8 @@ public:
 
 		//cout << "-----------------------------------------------------------" << endl;
 		for (int i = 0; i < col; ++i) {
-			//ret.push_back(char(sum_arr[i] + 48));
 			ret.Insertar(char(sum_arr[i] + 48));
-			//cout << ret[i] <<" , ";
 		}
-		/*
-			while (ret[0] == '0') {
-				ret = ret.substr(1, ret.length() - 1);
-			}*/
-
 		cout << "resultado : ";
 		ret.mostrarCadena();
 
@@ -297,6 +229,6 @@ public:
 
 		return resultado;
 	}
-
-
 };
+
+#endif
