@@ -4,12 +4,12 @@ int main()
 {
 	//A partir de 10 digitos ya sirve 
 	interger in1;
-	in1.ConvertirObjeto("1234");
+	in1.ConvertirObjeto("98799879955");
 	//
 	interger in2;
-	in2.ConvertirObjeto("1233");
+	in2.ConvertirObjeto("9879987998");
 	//
-	cout << endl << endl << endl << endl << endl << endl << endl << endl << endl << endl << endl << endl << endl << endl;
+	cout << endl << endl << endl ;
 	//
 	if (in1 == in2) {
 		cout << "Son iguales" << endl;
