@@ -127,6 +127,7 @@
     <ClInclude Include="interger.h" />
     <ClInclude Include="lista.h" />
     <ClInclude Include="nodo.h" />
+    <ClInclude Include="utiles.h" />
     <ClInclude Include="vector.h" />
   </ItemGroup>
   <ItemGroup>
@@ -134,6 +135,7 @@
     <ClCompile Include="interger.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="nodo.cpp" />
+    <ClCompile Include="utiles.cpp" />
     <ClCompile Include="vector.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

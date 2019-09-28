@@ -41,6 +41,8 @@ public:
 
 	void guardar_resultado(string nombre_archivo);
 
+	void guardar_resultado_alreves(string nombre_archivo);
+
 private:
 
 	char* v;

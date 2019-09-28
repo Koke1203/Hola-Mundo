@@ -10,6 +10,8 @@ interger::~interger()
 	//delete lis;
 }
 
+
+
 int interger::obtener_cantidad_nodos()
 {
 	return lis->get_cantidad_nodos();
@@ -112,7 +114,7 @@ void interger::mostrarNumeroAComoSeAlmacena()
 		*/
 void interger::ConvertirObjeto(string num)//crea la lista enlazada de vectores
 {
-	cont = num.size();
+
 	vector v;
 	vector* aux = new vector();//_Creamos un vector de 4 posiciones que contiene elementos dinamicos...
 	bool insercion;
@@ -120,6 +122,7 @@ void interger::ConvertirObjeto(string num)//crea la lista enlazada de vectores
 	cout << "Size : " << num.size() << endl;
 	for (short i = num.size(); i >= 0; i -= 4)// recorremos la entrada en numeros de cuatro en cuatro
 	{
+
 		cout << "Size : " << num.size() << endl;
 		//system("pause");
 		if (num.size() >= 4)
@@ -186,6 +189,9 @@ void interger::ConvertirObjeto(string num)//crea la lista enlazada de vectores
 			}
 		}
 	}
+
+
+
 }
 
 string interger::toString()
@@ -273,6 +279,7 @@ void interger::cargar_numero(string nombre)
 
 	system("pause");
 }
+
 
 //metodo que obtiene la cantidad de digitos del numero
 int interger::digitos_numero() {
@@ -473,4 +480,134 @@ bool interger::operator<=(interger num2) {
 			}
 		}
 	}
+}
+
+
+
+void interger::cargar_numero_alreves(string nombre)
+{
+	short cont = 0;
+	vector* aux = new vector();
+	bool insercion = true;
+	char digi;
+	string numero_4_digitos = "";
+
+	//-------verificar si es menor a 3
+	ifstream entrada2(nombre);
+	string auxstr;
+	string num_pequeño; int cont2 = 0;
+	while (entrada2.good() and cont <= 17)
+	{
+		entrada2 >> auxstr;
+		num_pequeño += auxstr;
+		cont++;
+
+	}
+	entrada2.close();
+	if (num_pequeño.size() <= 17)
+	{
+		reverse(num_pequeño.begin(), num_pequeño.end());
+		this->ConvertirObjeto(num_pequeño);
+	}
+	else//es un numero grande
+	{
+		ifstream entrada(nombre);
+		do {
+			//cout << ".";
+			if (!entrada.eof())
+				entrada >> digi;
+			else
+				break;
+			//cout << "digi: " << digi << endl;
+			numero_4_digitos += digi;
+			digi = ' ';
+			if (cont == 4)//llenamos un numero
+			{
+				//cout << "numero captado : " << numero_4_digitos << endl;
+				reverse(numero_4_digitos.begin(), numero_4_digitos.end());
+				cout << "numero 4 digi : " << numero_4_digitos << endl;
+				short num = atoi(numero_4_digitos.c_str());
+				//cout << " num short = " << num << endl;
+				//insercion = aux->insertarElementoPrimero(num);
+				insercion = aux->insertarElementoFinal(num);
+				if (insercion == false)//se lleno el vector
+				{
+
+					aux->mostrarNormalCasillas();
+					lis->insertar_elementoPrimero(new vector(*aux, bool()));// cambiar para insertar de ultimo a ver que tal
+					//lis->insertar_elemento(new vector(*aux, bool()));
+					aux->borrarElementos();
+					//insercion = aux->insertarElementoPrimero(num);//vamos a ponerlo para insercion al final
+					insercion = aux->insertarElementoFinal(num);
+					//cout << "toString : " << lis->imprimir_lista() << endl;
+					//system("pause");
+				}
+				num = 0;
+				numero_4_digitos = "";// se setea el valor del string
+
+				cont = 0;
+			}
+
+			cont++;
+		} while (entrada.good() and !entrada.eof());
+
+		//cout << "cont : " << cont << endl;
+		//cout << "cantidad vector: " << aux->getCant() << endl;
+		//cout << "ultimos digitos ojas : " << numero_4_digitos << endl;
+		if (!numero_4_digitos.empty())//quedaron numeros sin insertarse
+		{
+			//cout << "ultimos digitos ojas : " << numero_4_digitos << endl;
+			/*lis->insertar_elementoPrimero(new vector(*aux, bool()));*/// cambiar para insertar de ultimo a ver que tal
+			if (aux->getCant() < aux->getTam())//aun queda un espacio disponible
+			{
+				//aux->insertarElementoPrimero(atoi(numero_4_digitos.c_str()));
+				aux->insertarElementoFinal(atoi(numero_4_digitos.c_str()));
+				//lis->insertar_elemento(new vector(*aux, bool()));
+				lis->insertar_elementoPrimero(new vector(*aux, bool()));
+			}
+			else if (aux->getCant() == aux->getTam())//esta lleno el vector
+			{
+
+				//cout << "numero : " << num_int << endl;
+				//lis->insertar_elemento(new vector(*aux, bool()));
+				//aux->mostrarRellenandoOs();
+				lis->insertar_elementoPrimero(new vector(*aux, bool()));
+				aux->borrarElementos();
+				//cout << "numero _int: " << num_int << endl;
+				//aux->insertarElementoPrimero(atoi(numero_4_digitos.c_str()));
+
+				//aux->insertarElementoFinal(atoi(numero_4_digitos.c_str()));
+
+				//cout << "toString _  : " << aux->toString() << endl;
+
+				//lis->insertar_elementoPrimero(new vector(*aux, bool()));
+				//lis->insertar_elemento(new vector(*aux, bool()));
+
+			}
+			//cout << "toString : " << lis->imprimir_lista() << endl;
+
+		}
+		//aux->mostrarNormalCasillas();
+
+		/*cout << "--------------------------------------------------------------------" << endl;
+		lis->imprimir_lista();
+		cout << "--------------------------------------------------------------------" << endl;
+		cout << "cant _ " << lis->get_cantidad_nodos() << endl;
+		*/
+		string ulti = lis->getPrimero()->getPtr()->toString();
+		cout << "ojas-> " << ulti << endl; bool borrar = true;
+		for (size_t i = 0; i < ulti.size(); i++)
+		{
+			if (ulti[i] != '0')
+			{
+				borrar = false; break;
+			}
+		}
+		cout << "borrar : " << borrar << endl;
+		if (borrar == true)
+			lis->borrar_inicio();
+
+	}
+	//system("pause");
+	//system("cls");
 }
