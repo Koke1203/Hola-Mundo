@@ -337,7 +337,6 @@ bool vector::llenando_vector_por_digito(short num)
 
 ostream& operator<<(ostream& sal, vector& v)
 {
-
 	sal << " { ";
 	for (int i = 0; i < v.tamanio; i++)
 	{
