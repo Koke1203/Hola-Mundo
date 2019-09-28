@@ -293,10 +293,10 @@ bool interger::operator==(interger num2) {
 	else if (digitos_numero() == num2.digitos_numero()) { //se sabe que tiene el mismo tamanio
 		if (digitos_numero() <= 9) {    //compara para numeros menores o iguales a nueve digitos.
 			string aux, aux2;
-			for (size_t i = 0; i < obtener_numero_digitos(); i++) {
+			for (int i = 0; i < obtener_numero_digitos(); i++) {
 				aux += this[i];
 			}
-			for (size_t i = 0; i < num2.obtener_numero_digitos(); i++) {
+			for (int i = 0; i < num2.obtener_numero_digitos(); i++) {
 				aux2 += num2[i];
 			}
 			if (aux.compare(aux2) == 0) {

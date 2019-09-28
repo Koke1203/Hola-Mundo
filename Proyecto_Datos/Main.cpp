@@ -4,10 +4,10 @@ int main()
 {
 	//A partir de 10 digitos ya sirve 
 	interger in1;
-	in1.ConvertirObjeto("4564654654545464646546546546546546546546544464648");
+	in1.ConvertirObjeto("45474554");
 	//
 	interger in2;
-	in2.ConvertirObjeto("4564654654545464646546546546546546546546544464648");
+	in2.ConvertirObjeto("45474554");
 	//
 	cout << endl << endl << endl ;
 	//
