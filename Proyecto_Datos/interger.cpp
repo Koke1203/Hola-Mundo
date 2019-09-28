@@ -299,7 +299,6 @@ void interger::cargar_numero(string nombre)
 	system("pause");
 }
 
-
 //metodo que obtiene la cantidad de digitos del numero
 int interger::digitos_numero() {
 	return cont;
@@ -308,4 +307,54 @@ int interger::digitos_numero() {
 //devuelvo el vector que contiene la posicion digitada del nodo
 vector* interger::obtener_nodo(int pos) {
 	return lis->obtener_nodo(pos)->getPtr();
+}
+
+//para saber si dos intergers son iguales, tengo que pasarlo a la clase interger.cpp, y realizar la sobrecarga del operador
+bool interger::operator==(interger num2) {
+	bool es_igual = false;
+	if (cont != num2.digitos_numero()) {  //automaticamente se sabe que son diferentes
+		return es_igual;
+	}
+	else if (digitos_numero() == num2.digitos_numero()) { //se sabe que tiene el mismo tamanio
+		vector vector1, vector2;
+		for (short i = 0; i < obtener_cantidad_nodos();i++) {
+			//obtengo cada contenido de cada nodo de la lista, por medio de la clase vector, luego voy comparando eso.
+			vector1 = obtener_nodo(i);
+			vector2 = num2.obtener_nodo(i);
+			for (short i = 0; i < 4;i++) {
+				if (vector1.getNumerosPosicion(i) == vector2.getNumerosPosicion(i)) {
+					es_igual = true;
+				}
+				else {
+					es_igual = false;
+					return es_igual;
+				}
+			}
+		}
+	}
+}
+
+//para saber si dos intergers son diferentes, tengo que pasarlo a la clase interger.cpp, y realizar la sobrecarga del operador
+bool interger::operator!=(interger num2) {
+	bool es_igual = false;
+	if (cont != num2.digitos_numero()) {  //automaticamente se sabe que son diferentes
+		return es_igual;
+	}
+	else if (digitos_numero() == num2.digitos_numero()) { //se sabe que tiene el mismo tamanio
+		vector vector1, vector2;
+		for (short i = 0; i < obtener_cantidad_nodos();i++) {
+			//obtengo cada contenido de cada nodo de la lista, por medio de la clase vector, luego voy comparando eso.
+			vector1 = obtener_nodo(i);
+			vector2 = num2.obtener_nodo(i);
+			for (short i = 0; i < 4;i++) {
+				if (vector1.getNumerosPosicion(i) == vector2.getNumerosPosicion(i)) {
+					es_igual = false;
+				}
+				else {
+					es_igual = true;
+					return es_igual;
+				}
+			}
+		}
+	}
 }
