@@ -27,6 +27,7 @@ public:
 		a = utiles::convertir_int(str_a);
 		return a;
 	}
+
 };
 
 

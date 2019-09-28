@@ -6,6 +6,7 @@
 #include<iostream>
 #include<fstream>
 #include"cadena.h"
+#include"utiles.h"
 using namespace std;
 class interger{
 
@@ -406,3 +407,5 @@ interger* multiply(interger num1, interger  num2)
 
 void cargar_numero_alreves(string nombre_archivo);
 };
+
+#endif INTERGER_H_

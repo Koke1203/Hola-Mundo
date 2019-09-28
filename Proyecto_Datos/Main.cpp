@@ -2,21 +2,32 @@
 
 int main()
 {
-	//A partir de 10 digitos ya sirve 
-	interger in1;
-	in1.ConvertirObjeto("45474554");
-	//
-	interger in2;
-	in2.ConvertirObjeto("45474554");
-	//
-	cout << endl << endl << endl ;
-	//
-	if (in1 == in2) {
-		cout << "Son iguales" << endl;
-	}
-	else {
-		cout << "FALSE" << endl;
-	}
+
+	string a = "1234";
+
+	short num = utiles::convertir_int(a);
+
+	cout << num + 1 << endl;
+
+	string num_str = utiles::convertir_string(num);
+	num_str += " hola";
+	cout << num_str << endl;
+
+	////A partir de 10 digitos ya sirve 
+	//interger in1;
+	//in1.ConvertirObjeto("1232");
+	////
+	//interger in2;
+	//in2.ConvertirObjeto("1234");
+	////
+	//cout << endl << endl << endl << endl << endl << endl << endl << endl << endl << endl << endl << endl << endl << endl;
+	////
+	//if (in1 == in2) {
+	//	cout << "Son iguales" << endl;
+	//}
+	//else {
+	//	cout << "FALSE" << endl;
+	//}
 
 
 /*
