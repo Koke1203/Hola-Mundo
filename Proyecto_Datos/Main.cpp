@@ -1,15 +1,16 @@
 #include"interger.h"
 
 bool EsIgual(interger num1, interger num2);
+bool Mayor(interger num1, interger num2);
 
 int main()
 {
 
 	interger in1;
-	in1.ConvertirObjeto("164563131154544564654656");
+	in1.ConvertirObjeto("2");
 	//
 	interger in2;
-	in2.ConvertirObjeto("164563131154544564654656");
+	in2.ConvertirObjeto("1");
 	//
 	cout << endl << endl << endl << endl << endl << endl << endl << endl << endl << endl << endl << endl << endl << endl;
 	//
@@ -19,6 +20,7 @@ int main()
 	else {
 		cout << "TRUE, Son iguales!!!" << endl;
 	}
+
 	
 
 /*
