@@ -3,31 +3,21 @@
 int main()
 {
 
-	string a = "1234";
-
-	short num = utiles::convertir_int(a);
-
-	cout << num + 1 << endl;
-
-	string num_str = utiles::convertir_string(num);
-	num_str += " hola";
-	cout << num_str << endl;
-
-	////A partir de 10 digitos ya sirve 
-	//interger in1;
-	//in1.ConvertirObjeto("1232");
-	////
-	//interger in2;
-	//in2.ConvertirObjeto("1234");
-	////
-	//cout << endl << endl << endl << endl << endl << endl << endl << endl << endl << endl << endl << endl << endl << endl;
-	////
-	//if (in1 == in2) {
-	//	cout << "Son iguales" << endl;
-	//}
-	//else {
-	//	cout << "FALSE" << endl;
-	//}
+	//A partir de 10 digitos ya sirve 
+	interger in1;
+	in1.ConvertirObjeto("1233");
+	//
+	interger in2;
+	in2.ConvertirObjeto("1234");
+	//
+	cout << endl << endl << endl << endl << endl << endl << endl << endl << endl << endl << endl << endl << endl << endl;
+	//
+	if (in1 < in2) {
+		cout << "N1 es menor" << endl;
+	}
+	else {
+		cout << "N1 es mayor" << endl;
+	}
 
 
 /*

@@ -381,7 +381,7 @@ bool interger::operator!=(interger num2) {
 	}
 }
 
-bool  interger::operator>(interger num2) {
+bool  interger::operator >(interger num2) {
 	bool mayor = true;
 	if (digitos_numero() > num2.digitos_numero()) {  //automaticamente se sabe que son diferentes
 		return mayor;
@@ -391,18 +391,39 @@ bool  interger::operator>(interger num2) {
 		return mayor;
 	}
 	else if (digitos_numero() == num2.digitos_numero()) { //se sabe que tiene el mismo tamanio
-		vector vector1, vector2;
-		for (short i = 0; i < obtener_cantidad_nodos(); i++) {
-			//obtengo cada contenido de cada nodo de la lista, por medio de la clase vector, luego voy comparando eso.
-			vector1 = obtener_nodo(0);
-			vector2 = num2.obtener_nodo(0);
-			for (short i = 0; i < 4; i++) {
-				if (vector1.getNumerosPosicion(i) > vector2.getNumerosPosicion(i)) {
-					mayor = true;
-				}
-				else {
-					mayor = false;
-					return mayor;
+		if (digitos_numero() <= 9) {    //compara para numeros menores o iguales a nueve digitos.
+			string aux2;
+			string aux = lis->getPrimero()->getPtr()->toString();
+			for (int i = 0; i < num2.obtener_numero_digitos(); i++) {
+				aux2 += num2[i];
+			}
+			int n1 = utiles::convertir_int(aux);
+			int n2 = utiles::convertir_int(aux2);
+			if (n1>n2)
+			{
+				return mayor;
+			}
+			else
+			{
+				mayor = false;
+				return mayor;
+			}
+				
+		}
+		else if (digitos_numero() > 9) {
+			vector vector1, vector2;
+			for (short i = 0; i < obtener_cantidad_nodos(); i++) {
+				//obtengo cada contenido de cada nodo de la lista, por medio de la clase vector, luego voy comparando eso.
+				vector1 = obtener_nodo(0);
+				vector2 = num2.obtener_nodo(0);
+				for (short i = 0; i < 4; i++) {
+					if (vector1.getNumerosPosicion(i) > vector2.getNumerosPosicion(i)) {
+						mayor = true;
+					}
+					else {
+						mayor = false;
+						return mayor;
+					}
 				}
 			}
 		}
@@ -419,18 +440,38 @@ bool interger::operator<(interger num2) {
 		return menor;
 	}
 	else if (digitos_numero() == num2.digitos_numero()) { //se sabe que tiene el mismo tamanio
-		vector vector1, vector2;
-		for (short i = 0; i < obtener_cantidad_nodos(); i++) {
-			//obtengo cada contenido de cada nodo de la lista, por medio de la clase vector, luego voy comparando eso.
-			vector1 = obtener_nodo(0);
-			vector2 = num2.obtener_nodo(0);
-			for (short i = 0; i < 4; i++) {
-				if (vector1.getNumerosPosicion(i) < vector2.getNumerosPosicion(i)) {
-					menor = true;
-				}
-				else {
-					menor = false;
-					return menor;
+		if (digitos_numero() <= 9) {    //compara para numeros menores o iguales a nueve digitos.
+			string aux2;
+			string aux = lis->getPrimero()->getPtr()->toString();
+			for (int i = 0; i < num2.obtener_numero_digitos(); i++) {
+				aux2 += num2[i];
+			}
+			int n1 = utiles::convertir_int(aux);
+			int n2 = utiles::convertir_int(aux2);
+			if (n1 < n2)
+			{
+				return menor;
+			}
+			else
+			{
+				menor = false;
+				return menor;
+			}
+		}
+		else if (digitos_numero() > 9) {
+			vector vector1, vector2;
+			for (short i = 0; i < obtener_cantidad_nodos(); i++) {
+				//obtengo cada contenido de cada nodo de la lista, por medio de la clase vector, luego voy comparando eso.
+				vector1 = obtener_nodo(0);
+				vector2 = num2.obtener_nodo(0);
+				for (short i = 0; i < 4; i++) {
+					if (vector1.getNumerosPosicion(i) < vector2.getNumerosPosicion(i)) {
+						menor = true;
+					}
+					else {
+						menor = false;
+						return menor;
+					}
 				}
 			}
 		}
@@ -443,18 +484,38 @@ bool interger::operator>=(interger num2) {
 		return mayor;
 	}
 	else if (digitos_numero() == num2.digitos_numero()) {
-		vector vector1, vector2;
-		for (short i = 0; i < obtener_cantidad_nodos(); i++) {
-			vector1 = obtener_nodo(i);
-			vector2 = num2.obtener_nodo(i);
-			for (short i = 0; i < 4; i++) {
-				if (vector1.getNumerosPosicion(i) == vector2.getNumerosPosicion(i)) {
-					mayor = false;
-					return mayor;
-				}
-				else if (vector1.getNumerosPosicion(i) > vector2.getNumerosPosicion(i))
-				{
-					return mayor;
+		if (digitos_numero() <= 9) {    //compara para numeros menores o iguales a nueve digitos.
+			string aux2;
+			string aux = lis->getPrimero()->getPtr()->toString();
+			for (int i = 0; i < num2.obtener_numero_digitos(); i++) {
+				aux2 += num2[i];
+			}
+			int n1 = utiles::convertir_int(aux);
+			int n2 = utiles::convertir_int(aux2);
+			if (n1 > n2)
+			{
+				return mayor;
+			}
+			else if (n1 == n2)
+			{
+				mayor = false;
+				return mayor;
+			}
+		}
+		else if (digitos_numero() > 9) {
+			vector vector1, vector2;
+			for (short i = 0; i < obtener_cantidad_nodos(); i++) {
+				vector1 = obtener_nodo(i);
+				vector2 = num2.obtener_nodo(i);
+				for (short i = 0; i < 4; i++) {
+					if (vector1.getNumerosPosicion(i) == vector2.getNumerosPosicion(i)) {
+						mayor = false;
+						return mayor;
+					}
+					else if (vector1.getNumerosPosicion(i) > vector2.getNumerosPosicion(i))
+					{
+						return mayor;
+					}
 				}
 			}
 		}
@@ -467,18 +528,38 @@ bool interger::operator<=(interger num2) {
 		return menor;
 	}
 	else if (digitos_numero() == num2.digitos_numero()) {
-		vector vector1, vector2;
-		for (short i = 0; i < obtener_cantidad_nodos(); i++) {
-			vector1 = obtener_nodo(i);
-			vector2 = num2.obtener_nodo(i);
-			for (short i = 0; i < 4; i++) {
-				if (vector1.getNumerosPosicion(i) == vector2.getNumerosPosicion(i)) {
-					menor = false;
-					return menor;
-				}
-				else if (vector1.getNumerosPosicion(i) < vector2.getNumerosPosicion(i))
-				{
-					return menor;
+		if (digitos_numero() <= 9) {    //compara para numeros menores o iguales a nueve digitos.
+			string aux2;
+			string aux = lis->getPrimero()->getPtr()->toString();
+			for (int i = 0; i < num2.obtener_numero_digitos(); i++) {
+				aux2 += num2[i];
+			}
+			int n1 = utiles::convertir_int(aux);
+			int n2 = utiles::convertir_int(aux2);
+			if (n1 < n2)
+			{
+				return menor;
+			}
+			else if (n1 == n2)
+			{
+				menor = false;
+				return menor;
+			}
+		}
+		else if (digitos_numero() > 9) {
+			vector vector1, vector2;
+			for (short i = 0; i < obtener_cantidad_nodos(); i++) {
+				vector1 = obtener_nodo(i);
+				vector2 = num2.obtener_nodo(i);
+				for (short i = 0; i < 4; i++) {
+					if (vector1.getNumerosPosicion(i) == vector2.getNumerosPosicion(i)) {
+						menor = false;
+						return menor;
+					}
+					else if (vector1.getNumerosPosicion(i) < vector2.getNumerosPosicion(i))
+					{
+						return menor;
+					}
 				}
 			}
 		}
