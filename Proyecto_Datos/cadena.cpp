@@ -89,6 +89,17 @@ void cadena::guardar_resultado(string nombre_archivo)
 	entrada.close();
 }
 
+void cadena::guardar_resultado_alreves(string nombre_archivo)
+{
+	ofstream entrada = ofstream(nombre_archivo);
+
+	for (int i = this->getTam() - 1; i >= 0; i--)
+	{
+		entrada << (short)(v[i]) - 48;
+	}
+	entrada.close();
+}
+
 // Extiende el tamaño del cadena
 void cadena::Extender() {
 	char* tmp = v;
