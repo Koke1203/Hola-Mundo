@@ -1,5 +1,8 @@
 #include "interger.h"
 
+// interger.h
+// Autores: Gabriel Barboza Carvajal , Jorge Canales Espinoza , Joan Corea Aguilar - ( implementación ).
+
 interger::interger() {
 	lis = new lista_doble_enlazada();
 }
@@ -119,42 +122,42 @@ void interger::ConvertirObjeto(string num)//crea la lista enlazada de vectores
 	vector* aux = new vector();//_Creamos un vector de 4 posiciones que contiene elementos dinamicos...
 	bool insercion;
 	short numero;
-	cout << "Size : " << num.size() << endl;
+	//cout << "Size : " << num.size() << endl;
 	for (short i = num.size(); i >= 0; i -= 4)// recorremos la entrada en numeros de cuatro en cuatro
 	{
 
-		cout << "Size : " << num.size() << endl;
+		//cout << "Size : " << num.size() << endl;
 		//system("pause");
 		if (num.size() >= 4)
 		{
 			numero = short(stoi(num.substr(num.size() - 4, num.size())));
 			insercion = aux->insertarElementoFinal(numero);
-			cout << "> 4" << endl << numero << endl;
+			//cout << "> 4" << endl << numero << endl;
 
 			if (insercion == 0)//llego al final , nuevo vector hay que añadir
 			{
 				//lis->insertar_elemento(new vector(*aux));//creamos un vector nuevo con base al que se lleno recientemente 
 				lis->insertar_elementoPrimero(new vector(*aux));
-				lis->imprimir_lista();
+				//lis->imprimir_lista();
 				aux->borrarElementos();//borramos los datos del aux para empezar a llenarlo denuevo
-				cout << "----------------B O R R A N D O __ V E C T O R ---------------" << endl;
-				aux->mostrarNormalCasillas();
+				//cout << "----------------B O R R A N D O __ V E C T O R ---------------" << endl;
+				//aux->mostrarNormalCasillas();
 				aux->insertarElementoFinal(numero);
-				aux->mostrarNormalCasillas();
+				//aux->mostrarNormalCasillas();
 			}
 			num.resize(num.size() - 4);
-			cout << "Numero : " << numero << endl;
+			//cout << "Numero : " << numero << endl;
 			//system("pause");
 
 		}
 		else//final del nunmero
 		{
-			cout << "--------------FINAL DEL NUMERO---------------" << endl;
+			//cout << "--------------FINAL DEL NUMERO---------------" << endl;
 			numero = 0;
-			cout << "Size : " << num.size() << endl;
+			//cout << "Size : " << num.size() << endl;
 			if (num.size() != 0)
 				numero = short(stoi(num.substr(0, num.size())));
-			cout << numero << endl;
+			//cout << numero << endl;
 			insercion = aux->insertarElementoFinal(numero);
 			if (insercion == false)//se lleno y quedaron numeros sin almacenarse
 			{
@@ -167,24 +170,24 @@ void interger::ConvertirObjeto(string num)//crea la lista enlazada de vectores
 				else
 				{
 					lis->insertar_elementoPrimero(new vector(*aux));//guardamos el numero anterior
-					cout << "quedo el elemento : " << numero << " , sin almacenarse " << endl;
+					//cout << "quedo el elemento : " << numero << " , sin almacenarse " << endl;
 					aux->borrarElementos();
 					aux->insertarElementoFinal(numero);
-					aux->mostrarNormalCasillas();
+					//aux->mostrarNormalCasillas();
 					lis->insertar_elementoPrimero(new vector(*aux));
-					lis->imprimir_lista();
+					//lis->imprimir_lista();
 					return; break;
 				}
 				//aux->borrarElementos();//borramos los datos del aux para empezar a llenarlo denuevo
 			}
 			else
 			{
-				aux->mostrarNormalCasillas();
-				cout << "<4" << endl << numero << endl;
+				//aux->mostrarNormalCasillas();
+				//cout << "<4" << endl << numero << endl;
 
 				//lis->insertar_elemento(new vector(*aux));//creamos un vector nuevo con base al que se lleno recientemente 
 				lis->insertar_elementoPrimero(new vector(*aux));
-				lis->imprimir_lista();
+				//lis->imprimir_lista();
 				aux->borrarElementos();//borramos los datos del aux para empezar a llenarlo denuevo
 			}
 		}
@@ -212,73 +215,72 @@ void interger::guardar_numero_txt(string nombre)
 	salida << this->toString();
 	salida.close();
 }
-
-void interger::cargar_numero(string nombre)
-{
-	ifstream entrada(nombre);
-	short cont = 1;
-	vector* aux = new vector();
-	bool insercion = true;
-	char digi;
-	string numero_4_digitos = "";
-
-
-	do {
-		if (!entrada.eof())
-			entrada >> digi;
-		else
-			break;
-		cout << "digi: " << digi << endl;
-		numero_4_digitos += digi;
-		digi = ' ';
-		cout << "numero 4 digi : " << numero_4_digitos << endl;
-		if (cont == 4)//llenamos un numero
-		{
-			cout << "numero captado : " << numero_4_digitos << endl;
-
-			short num = atoi(numero_4_digitos.c_str());
-			cout << " num short = " << num << endl;
-			insercion = aux->insertarElementoPrimero(num);
-			if (insercion == false)//se lleno el vector
-			{
-
-				aux->mostrarNormalCasillas();
-				lis->insertar_elementoPrimero(new vector(*aux, bool()));
-				aux->borrarElementos();
-				aux->insertarElementoPrimero(num);
-				cout << "toString : " << lis->imprimir_lista() << endl;
-				system("pause");
-			}
-			num = 0;
-			numero_4_digitos = "";// se setea el valor del string
-
-			cont = 0;
-		}
-
-		cont++;
-	} while (entrada.good() and !entrada.eof());
-	if (aux->getTam() == 4 and numero_4_digitos != "")//quedaron numeros sin insertarse
-	{
-		cout << "ultimos digitos ojas : " << numero_4_digitos << endl;
-		lis->insertar_elementoPrimero(new vector(*aux, bool()));
-		aux->borrarElementos();
-
-		aux->insertarElementoPrimero(atoi(numero_4_digitos.c_str()));
-		cout << "toString _  : " << aux->toString() << endl;
-
-		lis->insertar_elementoPrimero(new vector(*aux, bool()));
-
-		cout << "toString : " << lis->imprimir_lista() << endl;
-
-	}
-	aux->mostrarNormalCasillas();
-
-	cout << "--------------------------------------------------------------------" << endl;
-	lis->imprimir_lista();
-	cout << "--------------------------------------------------------------------" << endl;
-
-	system("pause");
-}
+//
+//void interger::cargar_numero(string nombre)
+//{
+//	ifstream entrada(nombre);
+//	short cont = 1;
+//	vector* aux = new vector();
+//	bool insercion = true;
+//	char digi;
+//	string numero_4_digitos = "";
+//
+//	do {
+//		if (!entrada.eof())
+//			entrada >> digi;
+//		else
+//			break;
+//		cout << "digi: " << digi << endl;
+//		numero_4_digitos += digi;
+//		digi = ' ';
+//		cout << "numero 4 digi : " << numero_4_digitos << endl;
+//		if (cont == 4)//llenamos un numero
+//		{
+//			cout << "numero captado : " << numero_4_digitos << endl;
+//
+//			short num = atoi(numero_4_digitos.c_str());
+//			cout << " num short = " << num << endl;
+//			insercion = aux->insertarElementoPrimero(num);
+//			if (insercion == false)//se lleno el vector
+//			{
+//
+//				aux->mostrarNormalCasillas();
+//				lis->insertar_elementoPrimero(new vector(*aux, bool()));
+//				aux->borrarElementos();
+//				aux->insertarElementoPrimero(num);
+//				cout << "toString : " << lis->imprimir_lista() << endl;
+//				system("pause");
+//			}
+//			num = 0;
+//			numero_4_digitos = "";// se setea el valor del string
+//
+//			cont = 0;
+//		}
+//
+//		cont++;
+//	} while (entrada.good() and !entrada.eof());
+//	if (aux->getTam() == 4 and numero_4_digitos != "")//quedaron numeros sin insertarse
+//	{
+//		cout << "ultimos digitos ojas : " << numero_4_digitos << endl;
+//		lis->insertar_elementoPrimero(new vector(*aux, bool()));
+//		aux->borrarElementos();
+//
+//		aux->insertarElementoPrimero(atoi(numero_4_digitos.c_str()));
+//		cout << "toString _  : " << aux->toString() << endl;
+//
+//		lis->insertar_elementoPrimero(new vector(*aux, bool()));
+//
+//		cout << "toString : " << lis->imprimir_lista() << endl;
+//
+//	}
+//	aux->mostrarNormalCasillas();
+//
+//	cout << "--------------------------------------------------------------------" << endl;
+//	lis->imprimir_lista();
+//	cout << "--------------------------------------------------------------------" << endl;
+//
+//	system("pause");
+//}
 
 
 //metodo que obtiene la cantidad de digitos del numero
@@ -289,6 +291,27 @@ int interger::digitos_numero() {
 //devuelvo el vector que contiene la posicion digitada del nodo
 vector* interger::obtener_nodo(int pos) {
 	return lis->obtener_nodo(pos)->getPtr();
+}
+
+int interger::getCarry(int num)
+{
+	int carry = 0;
+	if (num >= 10) {
+		while (num != 0) {
+			carry = num % 10;
+			//cout << "Carry : " << carry << endl;
+			num = num / 10;
+			//cout << "Num : " << num << endl;
+		}
+	}
+
+	else {
+		carry = 0;
+		/*	cout << "Num <= 10" << endl;
+			cout << "Carry : " << carry << endl;
+			cout << "Num : " << num << endl;*/
+	}
+	return carry;
 }
 
 //para saber si dos intergers son iguales, tengo que pasarlo a la clase interger.cpp, y realizar la sobrecarga del operador
@@ -487,6 +510,229 @@ bool interger::operator<=(interger num2) {
 
 
 
+interger* interger::multiply(interger num1, interger num2)
+{
+	int len1 = num1.obtener_numero_digitos();
+	int len2 = num2.obtener_numero_digitos();
+	if (len1 == 0 || len2 == 0)
+		return nullptr;
+
+
+	short* result = new short[len1 + len2];
+	for (size_t i = 0; i < len1 + len2; i++)
+	{
+		result[i] = 0;
+	}
+	int i_n1 = 0;
+	int i_n2 = 0;
+	for (int i = len1 - 1; i >= 0; i--)
+	{
+		int carry = 0;
+		int n1 = num(num1[i]);
+		i_n2 = 0;
+
+		for (int j = len2 - 1; j >= 0; j--)
+		{
+			int n2 = num(num2[j]);
+			int sum = n1 * n2 + result[i_n1 + i_n2] + carry;
+
+			carry = sum / 10;
+
+			result[i_n1 + i_n2] = sum % 10;
+			i_n2++;
+		}
+
+		if (carry > 0)
+			result[i_n1 + i_n2] += carry;
+
+		i_n1++;
+	}
+
+	// ignore '0's from the right 
+	int i = (len1 + len2) - 1;
+	//cout << " i : " << i << endl;
+	while (i >= 0 && result[i] == 0)
+		i--;
+
+	string s = "";
+	//guardamos el resultado en un txt
+
+
+	cadena* resu = new cadena(0);
+
+	i = (len1 + len2) - 1;
+	//cout << " i : " << i << endl;
+	while (i >= 0)
+	{
+		string ss = std::to_string(result[i--]);
+		//cout << "ss : " << ss << endl;
+		resu->Insertar(ss.at(0));
+		ss = "";
+	}
+	resu->guardar_resultado_alreves("../resultado_alreves.txt");
+	interger* res = new interger();
+	res->cargar_numero_alreves("../resultado_alreves.txt");
+	return res;
+
+}
+
+
+interger& interger::operator*(interger& num2)
+{
+
+	interger num1(*this);
+	unsigned int len1 = num1.obtener_numero_digitos();// num1.obtener_numero_digitos();
+	unsigned int len2 = num2.obtener_numero_digitos();
+	if (len1 == 0 || len2 == 0)
+		return *this;
+
+	//vector para almacenar el resultado de las multiplicaciones
+	short* result = new short[len1 + len2];
+	for (size_t i = 0; i < len1 + len2; i++)
+	{
+		result[i] = 0;
+	}
+	//indices para los numeros 1 y 2
+	int i_n1 = 0;
+	int i_n2 = 0;
+	//recorremos el primer numero de derecha a izquierda como se hace a pie , cada digito multiplicados por los demas
+	for (int i = len1 - 1; i >= 0; i--)
+	{
+		//cout << "i :" << i << endl;
+		int carry = 0;
+		int n1 = num(num1[i]);
+		i_n2 = 0;
+
+		//recorremos el segundo numero de derecha a izquierda...          
+		for (int j = len2 - 1; j >= 0; j--)
+		{
+			
+			int n2 = num(num2[j]);
+
+			int sum = n1 * n2 + result[i_n1 + i_n2] + carry;
+
+			carry = sum / 10;
+
+			result[i_n1 + i_n2] = sum % 10;
+			i_n2++;
+		}
+
+		if (carry > 0)
+			result[i_n1 + i_n2] += carry;
+
+		i_n1++;
+	}
+
+	// ignore '0's from the right 
+	int i = (len1 + len2) - 1;
+	//cout << " i : " << i << endl;
+	while (i >= 0 && result[i] == 0)
+		i--;
+
+
+	//// generate the result string 
+	string s = "";
+	//guardamos el resultado en un txt
+
+	cadena* resu = new cadena(0);
+
+	i = (len1 + len2) - 1;
+	//cout << " i : " << i << endl;
+	while (i >= 0)
+	{
+		string ss = std::to_string(result[i--]);
+		//cout << "ss : " << ss << endl;
+		resu->Insertar(ss.at(0));
+		ss = "";
+	}
+
+	resu->guardar_resultado_alreves("../resultado_alreves.txt");
+	interger* res = new interger();
+	res->cargar_numero_alreves("../resultado_alreves.txt");
+	return *res;
+}
+
+interger& interger::operator*=(interger& num2)
+{
+	interger num1(*this);
+	int len1 = num1.obtener_numero_digitos();// num1.obtener_numero_digitos();
+	int len2 = num2.obtener_numero_digitos();
+	
+	try
+	{
+		if (utiles::convertir_int(num2.toString()) == CERO or utiles::convertir_int(toString()) == CERO
+			or utiles::convertir_int(num2.toString())< CERO or utiles::convertir_int(toString())< CERO)
+			throw "multiplicacion por 0 , Resultado = 0\n";
+	}
+	catch (const char * da)
+	{
+		cout << da << endl;
+		interger in;
+		in.ConvertirObjeto("1");
+		return in;
+	}
+
+	short* result = new short[len1 + len2];
+	for (size_t i = 0; i < len1 + len2; i++)
+	{
+		result[i] = 0;
+	}
+
+	int i_n1 = 0;
+	int i_n2 = 0;
+	
+	for (int i = len1 - 1; i >= 0; i--)
+	{
+		int carry = 0;
+		int n1 = num(num1[i]);
+		i_n2 = 0;
+
+		for (int j = len2 - 1; j >= 0; j--)
+		{
+			int n2 = num(num2[j]);
+		
+			int sum = n1 * n2 + result[i_n1 + i_n2] + carry;
+
+			carry = sum / 10;
+			
+			result[i_n1 + i_n2] = sum % 10;
+			i_n2++;
+		}
+
+		if (carry > 0)
+			result[i_n1 + i_n2] += carry;
+
+		i_n1++;
+	}
+
+	int i = (len1 + len2) - 1;
+	//cout << " i : " << i << endl;
+	while (i >= 0 && result[i] == 0)
+		i--;
+
+	//// generate the result string 
+	string s = "";
+	//guardamos el resultado en un txt
+
+	cadena* resu = new cadena(0);
+
+	i = (len1 + len2) - 1;
+	//cout << " i : " << i << endl;
+	while (i >= 0)
+	{
+		string ss = std::to_string(result[i--]);
+		//cout << "ss : " << ss << endl;
+		resu->Insertar(ss.at(0));
+		ss = "";
+	}
+
+	resu->guardar_resultado_alreves("../resultado_alreves.txt");
+	interger* res = new interger();
+	res->cargar_numero_alreves("../resultado_alreves.txt");
+	*this = *res;
+	return *this;
+}
+
 void interger::cargar_numero_alreves(string nombre)
 {
 	short cont = 0;
@@ -495,7 +741,7 @@ void interger::cargar_numero_alreves(string nombre)
 	char digi;
 	string numero_4_digitos = "";
 
-	//-------verificar si es menor a 3
+	//-------verificar si es un numero menor a 16 digitos , para recuperarlo de otra manera
 	ifstream entrada2(nombre);
 	string auxstr;
 	string num_pequeño; int cont2 = 0;
@@ -528,7 +774,7 @@ void interger::cargar_numero_alreves(string nombre)
 			{
 				//cout << "numero captado : " << numero_4_digitos << endl;
 				reverse(numero_4_digitos.begin(), numero_4_digitos.end());
-				cout << "numero 4 digi : " << numero_4_digitos << endl;
+				//cout << "numero 4 digi : " << numero_4_digitos << endl;
 				short num = atoi(numero_4_digitos.c_str());
 				//cout << " num short = " << num << endl;
 				//insercion = aux->insertarElementoPrimero(num);
@@ -536,7 +782,7 @@ void interger::cargar_numero_alreves(string nombre)
 				if (insercion == false)//se lleno el vector
 				{
 
-					aux->mostrarNormalCasillas();
+					//aux->mostrarNormalCasillas();
 					lis->insertar_elementoPrimero(new vector(*aux, bool()));// cambiar para insertar de ultimo a ver que tal
 					//lis->insertar_elemento(new vector(*aux, bool()));
 					aux->borrarElementos();
@@ -597,8 +843,10 @@ void interger::cargar_numero_alreves(string nombre)
 		cout << "--------------------------------------------------------------------" << endl;
 		cout << "cant _ " << lis->get_cantidad_nodos() << endl;
 		*/
+		//	verificamos que no haya un nodo con 0´s al inicio y lo borramos de ser asi
 		string ulti = lis->getPrimero()->getPtr()->toString();
-		cout << "ojas-> " << ulti << endl; bool borrar = true;
+		//cout << "ojas-> " << ulti << endl; 
+		bool borrar = true;
 		for (size_t i = 0; i < ulti.size(); i++)
 		{
 			if (ulti[i] != '0')
@@ -606,11 +854,27 @@ void interger::cargar_numero_alreves(string nombre)
 				borrar = false; break;
 			}
 		}
-		cout << "borrar : " << borrar << endl;
+		//cout << "borrar : " << borrar << endl;
 		if (borrar == true)
 			lis->borrar_inicio();
 
 	}
 	//system("pause");
 	//system("cls");
+}
+
+int interger::num(char a)
+{
+	return int(a) - 48;
+}
+
+int interger::num(string a)
+{
+	return atoi(a.c_str());
+}
+
+ostream& operator<<(ostream& o,  interger& in)
+{
+	o << in.toString() << endl;
+	return o;
 }

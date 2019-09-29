@@ -1,5 +1,8 @@
 #include "utiles.h"
 
+// utiles.cpp
+// Autores: Gabriel Barboza Carvajal , Jorge Canales Espinoza , Joan Corea Aguilar
+// Descripción: clase de utiles para hacer conversiones sencillas de int a string y viceversa...(implementación)
 
 int utiles::convertir_int(string s) {
 	stringstream r(s);

@@ -1,3 +1,6 @@
+// utiles.h
+// Autores: Gabriel Barboza Carvajal , Jorge Canales Espinoza , Joan Corea Aguilar
+// Descripción: clase de utiles para hacer conversiones sencillas de int a string y viceversa...
 
 #ifndef FOO_BAR_BAZ_H_
 #define FOO_BAR_BAZ_H_
