@@ -54,8 +54,10 @@ private:
 	int cont;
 public:
 
-	interger();
 	
+	interger();
+	interger(int num);
+	interger(long num);
 	~interger();
 
 

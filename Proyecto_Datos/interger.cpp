@@ -3,8 +3,25 @@
 // interger.h
 // Autores: Gabriel Barboza Carvajal , Jorge Canales Espinoza , Joan Corea Aguilar - ( implementación ).
 
+
+
 interger::interger() {
 	lis = new lista_doble_enlazada();
+}
+
+
+interger::interger(int num) {
+	lis = new lista_doble_enlazada();
+	string valor;
+	valor = to_string(num);
+	ConvertirObjeto(valor);
+}
+
+interger::interger(long num) {
+	lis = new lista_doble_enlazada();
+	string valor;
+	valor = to_string(num);
+	ConvertirObjeto(valor);
 }
 
 interger::~interger()
@@ -12,6 +29,7 @@ interger::~interger()
 	lis->~lista_doble_enlazada();
 	//delete lis;
 }
+
 
 
 
