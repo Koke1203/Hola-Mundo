@@ -1,25 +1,26 @@
+
+// main.cpp
+// Autores: Gabriel Barboza Carvajal , Jorge Canales Espinoza , Joan Corea Aguilar
+// Descripcion: archivo principal donde se accede a todas las clases para utilizarlas y realizar operaciones deseadas.
+
 #include"interger.h"
 
 int main()
 {
-
-	//A partir de 10 digitos ya sirve 
 	interger in1;
-	in1.ConvertirObjeto("873384448733844987338444");
-	//
+	in1.ConvertirObjeto("2");
 	interger in2;
-	in2.ConvertirObjeto("873384448733844487338444");
-	//
-	cout << endl;
-	//
-	if (in1 > in2) {
-		cout << " N1 Mayor" << endl;
-	}
-	else {
-		cout << "N1 Menor" << endl;
-	}
+	in2.ConvertirObjeto("2");
+	interger in3;
+	in3.ConvertirObjeto("2");
 
+	in1*= in2;
 
+	cout << in1 << endl;
+
+	in1 *= in3;
+
+	cout << in1 << endl;
 
 
 	system("pause");

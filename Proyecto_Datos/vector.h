@@ -1,11 +1,14 @@
+// vector.h
+// Autores: Gabriel Barboza Carvajal , Jorge Canales Espinoza , Joan Corea Aguilar
+// Descripción: clase donde se almacenaran los digitos de los numeros para mejorar el espacio del interger
 #ifndef VECTOR_H_
+#define VECTOR_H_
 #include<iostream>
 using namespace std;
 #include<sstream>
 #define TAM 4;
 #define ZERO 0;
 #define UNO 1;
-#define VECTOR_H_
 
 
 class vector

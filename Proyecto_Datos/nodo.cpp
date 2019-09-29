@@ -1,5 +1,9 @@
 #include"nodo.h"
 
+// nodo.cpp
+// Autores: Gabriel Barboza Carvajal , Jorge Canales Espinoza , Joan Corea Aguilar
+// Descripción: clase nodo con la cual se va a crear el la lista del interger , contiene un vector con cuatro celdas tipo short...
+//	(implementación)
 
 nodo& nodo::operator=(nodo& a)
 {

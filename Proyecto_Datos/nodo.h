@@ -1,11 +1,7 @@
 
-
-
 // nodo.h
-// Autor: Gabriel Barboza Carvajal
-// Descripción: clase nodo que se utiliza para ligar los demas y asi generar la lista enlazada generica. 
-
-//#pragma once
+// Autores: Gabriel Barboza Carvajal , Jorge Canales Espinoza , Joan Corea Aguilar
+// Descripción: clase nodo con la cual se va a crear el la lista del interger , contiene un vector con cuatro celdas tipo short...
 
 #ifndef NODO_H_
 #define NODO_H_

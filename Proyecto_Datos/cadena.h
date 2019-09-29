@@ -1,5 +1,9 @@
-#pragma once
 
+// cadena.h
+// Autores: Gabriel Barboza Carvajal , Jorge Canales Espinoza , Joan Corea Aguilar
+// Descripción: un vector de caracteres que se expande para poder guardar datos para gestionarlos despues...
+#ifndef CADENA_H_
+#define CADENA_H_
 #include<iostream>
 #include<fstream>
 using namespace std;
@@ -54,3 +58,5 @@ private:
 
 
 };
+
+#endif
