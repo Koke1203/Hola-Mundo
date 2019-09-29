@@ -114,7 +114,7 @@ void interger::mostrarNumeroAComoSeAlmacena()
 		*/
 void interger::ConvertirObjeto(string num)//crea la lista enlazada de vectores
 {
-
+	cont = num.size();
 	vector v;
 	vector* aux = new vector();//_Creamos un vector de 4 posiciones que contiene elementos dinamicos...
 	bool insercion;
@@ -298,6 +298,7 @@ bool interger::operator==(interger num2) {
 		return es_igual;
 	}
 	else if (digitos_numero() == num2.digitos_numero()) { //se sabe que tiene el mismo tamanio
+		cout <<"Numero de digitos"<< num2.digitos_numero() << endl;
 		if (digitos_numero() <= 9) {    //compara para numeros menores o iguales a nueve digitos.
 			string aux, aux2;
 			string nodo = lis->getPrimero()->getPtr()->toString();
@@ -306,7 +307,7 @@ bool interger::operator==(interger num2) {
 			//	//aux += ;
 			//}
 			cout << "aux : " << aux << endl;
-			for (size_t i = 0; i < num2.obtener_numero_digitos(); i++) {
+			for (int i = 0; i < num2.obtener_numero_digitos(); i++) {
 				aux2 += num2[i];
 			}
 			if (nodo.compare(aux2) == 0) {
