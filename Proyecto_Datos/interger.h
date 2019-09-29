@@ -29,6 +29,7 @@
 //----------|---------------------------------------------------------------------------------------|
 
 #ifndef INTERGER_H_
+
 #define INTERGER_H_
 #include"lista.h"
 #include"vector.h"
