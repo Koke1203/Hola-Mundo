@@ -315,7 +315,7 @@ int interger::getCarry(int num)
 }
 
 //para saber si dos intergers son iguales, tengo que pasarlo a la clase interger.cpp, y realizar la sobrecarga del operador
-bool interger::operator==(interger num2) {
+bool interger::operator==(interger& num2) {
 	bool es_igual = false;
 	if (cont != num2.digitos_numero()) {  //automaticamente se sabe que son diferentes
 		return es_igual;
@@ -328,7 +328,7 @@ bool interger::operator==(interger num2) {
 			//for (size_t i = 0; i < obtener_numero_digitos(); i++) {
 			//	//aux += ;
 			//}
-			cout << "aux : " << aux << endl;
+			//cout << "aux : " << aux << endl;
 			for (size_t i = 0; i < num2.obtener_numero_digitos(); i++) {
 				aux2 += num2[i];
 			}
@@ -361,50 +361,17 @@ bool interger::operator==(interger num2) {
 }
 
 //para saber si dos intergers son diferentes, tengo que pasarlo a la clase interger.cpp, y realizar la sobrecarga del operador
-bool interger::operator!=(interger num2) {
-	bool es_igual = false;
-	if (cont != num2.digitos_numero()) {  //automaticamente se sabe que son diferentes
-		es_igual = true;
-		return es_igual;
-	}
-	else if (digitos_numero() == num2.digitos_numero()) { //se sabe que tiene el mismo tamanio
-		if (digitos_numero() <= 9) {
-			string aux, aux2;
-			for (size_t i = 0; i < obtener_numero_digitos(); i++) {
-				aux += this[i];
-			}
-			for (size_t i = 0; i < num2.obtener_numero_digitos(); i++) {
-				aux2 += num2[i];
-			}
-			if (aux.compare(aux2) == 0) {
-				es_igual = false;
-			}
-			else {
-				es_igual = true;
-				return es_igual;
-			}
-		}
-		else if (digitos_numero() > 9) {
-			vector vector1, vector2;
-			for (long i = 0; i < obtener_cantidad_nodos();i++) {
-				//obtengo cada contenido de cada nodo de la lista, por medio de la clase vector, luego voy comparando eso.
-				vector1 = obtener_nodo(i);
-				vector2 = num2.obtener_nodo(i);
-				for (short i = 0; i < 4;i++) {
-					if (vector1.getNumerosPosicion(i) != vector2.getNumerosPosicion(i)) {
-						es_igual = false;
-					}
-					else {
-						es_igual = true;
-						return es_igual;
-					}
-				}
-			}
-		}
-	}
+bool interger::operator!=(interger& num2) {
+	
+	bool s = *this == num2;
+	if (s)
+		return false;
+	else
+		return true;
+	
 }
 
-bool  interger::operator >(interger num2) {
+bool  interger::operator >(interger& num2) {
 	bool mayor = true;
 	if (digitos_numero() > num2.digitos_numero()) {  //automaticamente se sabe que son diferentes
 		return mayor;
@@ -453,7 +420,7 @@ bool  interger::operator >(interger num2) {
 	}
 }
 
-bool interger::operator<(interger num2) {
+bool interger::operator<(interger& num2) {
 	bool menor = true;
 	if (digitos_numero() < num2.digitos_numero()) {  //automaticamente se sabe que son diferentes
 		return menor;
@@ -501,7 +468,7 @@ bool interger::operator<(interger num2) {
 	}
 }
 
-bool interger::operator>=(interger num2) {
+bool interger::operator>=(interger& num2) {
 	bool mayor = true;
 	if (digitos_numero() > num2.digitos_numero()) {
 		return mayor;
@@ -545,7 +512,7 @@ bool interger::operator>=(interger num2) {
 	}
 }
 
-bool interger::operator<=(interger num2) {
+bool interger::operator<=(interger& num2) {
 	bool menor = true;
 	if (digitos_numero() < num2.digitos_numero()) {
 		return menor;
@@ -595,9 +562,19 @@ interger* interger::multiply(interger num1, interger num2)
 {
 	int len1 = num1.obtener_numero_digitos();
 	int len2 = num2.obtener_numero_digitos();
-	if (len1 == 0 || len2 == 0)
-		return nullptr;
-
+	try
+	{
+		if (utiles::convertir_int(num2.toString()) == CERO or utiles::convertir_int(toString()) == CERO
+			or utiles::convertir_int(num2.toString()) < CERO or utiles::convertir_int(toString()) < CERO)
+			throw "multiplicacion por 0 , Resultado = 0\n";
+	}
+	catch (const char* da)
+	{
+		cout << da << endl;
+		interger *in=new interger();
+		in->ConvertirObjeto("1");
+		return in;
+	}
 
 	short* result = new short[len1 + len2];
 	for (size_t i = 0; i < len1 + len2; i++)
@@ -629,9 +606,7 @@ interger* interger::multiply(interger num1, interger num2)
 		i_n1++;
 	}
 
-	// ignore '0's from the right 
 	int i = (len1 + len2) - 1;
-	//cout << " i : " << i << endl;
 	while (i >= 0 && result[i] == 0)
 		i--;
 
@@ -664,9 +639,19 @@ interger& interger::operator*(interger& num2)
 	interger num1(*this);
 	unsigned int len1 = num1.obtener_numero_digitos();// num1.obtener_numero_digitos();
 	unsigned int len2 = num2.obtener_numero_digitos();
-	if (len1 == 0 || len2 == 0)
-		return *this;
-
+	try
+	{
+		if (utiles::convertir_int(num2.toString()) == CERO or utiles::convertir_int(toString()) == CERO
+			or utiles::convertir_int(num2.toString()) < CERO or utiles::convertir_int(toString()) < CERO)
+			throw "multiplicacion por 0 , Resultado = 0\n";
+	}
+	catch (const char* da)
+	{
+		cout << da << endl;
+		interger in;
+		in.ConvertirObjeto("1");
+		return in;
+	}
 	//vector para almacenar el resultado de las multiplicaciones
 	short* result = new short[len1 + len2];
 	for (size_t i = 0; i < len1 + len2; i++)

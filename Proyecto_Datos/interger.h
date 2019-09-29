@@ -50,7 +50,6 @@ private:
 	lista_doble_enlazada* lis;
 	int cantidad_nodos;
 	long pos;
-	int hola;
 	int cont;
 public:
 
@@ -67,18 +66,13 @@ public:
 		return obtener_cantidad_nodos() * 16;
 	}
 
-	operator int()
-	{
-		return hola;
-	}
-
 	//Sobrecarga de operadores de comparacion
-	bool operator==(interger num2);
-	bool operator!=(interger num2);
-	bool operator>(interger num2);
-	bool operator<(interger num2);
-	bool operator>=(interger num2);
-	bool operator<=(interger num2);
+	bool operator==(interger& num2);
+	bool operator!=(interger& num2);
+	bool operator>(interger& num2);
+	bool operator<(interger& num2);
+	bool operator>=(interger& num2);
+	bool operator<=(interger& num2);
 	//------------------------------------
 
 	void mostrarNumero();
@@ -100,7 +94,7 @@ public:
 	vector* obtener_nodo(int pos);
 
 
-	//------------------------------------multiplicacion de intergers-----------------------------------------------
+//------------------------------------multiplicacion de intergers-----------------------------------------------
 
 //-------------------------- __________M O D I F I C A C I O N ___ P A R A ___ I N T E R G E R S _____-----------------------------
 	int getCarry(int num);
