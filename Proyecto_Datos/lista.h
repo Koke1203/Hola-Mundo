@@ -1,8 +1,8 @@
-// lista_doble_enlazada.h
-// Autor: Gabriel Barboza Carvajal
-// Descripción: clase lista que contiene nodos genericos para su implementacion.
 
-//------------------------------------------------------------------------
+// lista.cpp
+// Autores: Gabriel Barboza Carvajal , Jorge Canales Espinoza , Joan Corea Aguilar
+// Descripción: clase lista que contiene nodos genericos para su implementacion.
+// (implementación)
 
 #ifndef LISTA_DOBLE_ENLAZADA_H_
 #include"nodo.h"
@@ -68,7 +68,7 @@ inline lista_doble_enlazada::~lista_doble_enlazada()
 
 inline void lista_doble_enlazada::insertar_elementoPrimero(vector* a)
 {
-	cout << "Elemento a insertar : " << *a << endl;
+	//cout << "Elemento a insertar : " << *a << endl;
 	nodo* nuevo = new nodo();
 	nuevo->setVec(a);     // Guardamos el valor en el nodo
 	nuevo->setSig(nullptr);   // El puntero siguiente apuntaría a NULL
@@ -92,7 +92,7 @@ inline void lista_doble_enlazada::insertar_elementoPrimero(vector* a)
 
 inline void lista_doble_enlazada::insertar_elemento(vector* a)
 {
-	cout << "Elemento a insertar : " << *a << endl;
+	//cout << "Elemento a insertar : " << *a << endl;
 	nodo* nuevo = new nodo();
 	nuevo->setVec(a);     // Guardamos el valor en el nodo
 	nuevo->setSig(nullptr);   // El puntero siguiente apuntaría a NULL
