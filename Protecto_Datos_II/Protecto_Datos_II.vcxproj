@@ -20,8 +20,8 @@
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>16.0</VCProjectVersion>
-    <ProjectGuid>{40E041FC-64CC-4FF2-B7BA-4F919BA539E7}</ProjectGuid>
-    <RootNamespace>ProyectoDatos</RootNamespace>
+    <ProjectGuid>{3BF975FD-E518-4F32-96F8-27446C627F46}</ProjectGuid>
+    <RootNamespace>ProtectoDatosII</RootNamespace>
     <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
@@ -123,23 +123,6 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClInclude Include="cadena.h" />
-    <ClInclude Include="interger.h" />
-    <ClInclude Include="lista.h" />
-    <ClInclude Include="nodo.h" />
-    <ClInclude Include="utiles.h" />
-    <ClInclude Include="vector.h" />
-  </ItemGroup>
-  <ItemGroup>
-    <ClCompile Include="cadena.cpp" />
-    <ClCompile Include="interger.cpp" />
-    <ClCompile Include="main.cpp" />
-    <ClCompile Include="nodo.cpp" />
-    <ClCompile Include="utiles.cpp" />
-    <ClCompile Include="vector.cpp" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="cpp.hint" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

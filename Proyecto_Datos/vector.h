@@ -1,13 +1,14 @@
-
-
+// vector.h
+// Autores: Gabriel Barboza Carvajal , Jorge Canales Espinoza , Joan Corea Aguilar
+// Descripción: clase donde se almacenaran los digitos de los numeros para mejorar el espacio del interger
 #ifndef VECTOR_H_
+#define VECTOR_H_
 #include<iostream>
 using namespace std;
 #include<sstream>
 #define TAM 4;
 #define ZERO 0;
 #define UNO 1;
-#define VECTOR_H_
 
 
 class vector
@@ -21,6 +22,20 @@ private:
 	short carry;
 public:
 
+	short getNumerosPosicion(int pos) {
+		if (pos == 0) {
+			return getPrimero();
+		}
+		else if (pos == 1) {
+			return getSegundo();
+		}
+		else if (pos == 2) {
+			return getTercero();
+		}
+		else if(pos==3){
+			return getCuarto();
+		}
+	}
 
 	void set_carry(short c)
 	{
@@ -51,7 +66,6 @@ public:
 	short getTercero();
 	short getSegundo();
 	short getPrimero();
-	short getNumerosPosicion(int pos);
 
 	short getTam();
 	short getCant()
@@ -81,6 +95,7 @@ public:
 	int obtener_cantidad_digitos(short num);//metodo para saber cuantos digitos tiene un numero de una posicion del vector
 	string toString();
 	bool llenando_vector_por_digito(short num);
+
 };
 
 

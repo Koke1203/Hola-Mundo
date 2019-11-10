@@ -1,5 +1,7 @@
 #include "vector.h"
-
+// vector.cpp
+// Autores: Gabriel Barboza Carvajal , Jorge Canales Espinoza , Joan Corea Aguilar
+// Descripción: clase donde se almacenaran los digitos de los numeros para mejorar el espacio del interger - (implementación)
 vector::vector()
 {
 	tamanio = TAM;
@@ -20,11 +22,11 @@ vector::vector(const vector& vect, bool)
 	tamanio = vect.tamanio;
 	cantidad = vect.cantidad;
 	vec = new short[vect.tamanio];
-	cout << "--------------------IMPRIMIENDO DEL VECTOR RECIBIDO---------------------------" << endl;
-	for (short i = tamanio - 1; i >= 0; i--)
-		cout << vect.vec[i] << " , ";
+	//cout << "--------------------IMPRIMIENDO DEL VECTOR RECIBIDO---------------------------" << endl;
+	//for (short i = tamanio - 1; i >= 0; i--)
+		//cout << vect.vec[i] << " , ";
 
-	cout << endl;
+	//cout << endl;
 	//system("pause");
 	for (short i = tamanio - 1; i >= 0; i--)
 	{
@@ -46,11 +48,11 @@ vector::vector(const vector& vect)
 	tamanio = vect.tamanio;
 	cantidad = vect.cantidad;
 	vec = new short[vect.tamanio];
-	cout << "--------------------IMPRIMIENDO DEL VECTOR RECIBIDO---------------------------" << endl;
-	for (short i = tamanio - 1; i >= vect.tamanio - vect.cantidad; i--)
-		cout << vect.vec[i] << " , ";
+	//cout << "--------------------IMPRIMIENDO DEL VECTOR RECIBIDO---------------------------" << endl;
+	//for (short i = tamanio - 1; i >= vect.tamanio - vect.cantidad; i--)
+		//cout << vect.vec[i] << " , ";
 
-	cout << endl;
+	//cout << endl;
 	//system("pause");
 	for (short i = tamanio - 1; i >= vect.tamanio - vect.cantidad; i--)
 	{
@@ -113,22 +115,6 @@ vector* vector::operator=(const vector* a2)
 	}
 	return this; //Retornar una referencia es un *this.
 }
-
-short vector::getNumerosPosicion(int pos) {
-	if (pos == 0) {
-		return getPrimero();
-	}
-	else if (pos == 1) {
-		return getSegundo();
-	}
-	else if (pos == 2) {
-		return getTercero();
-	}
-	else {
-		return getCuarto();
-	}
-}
-
 
 short vector::getCuarto()
 {
@@ -353,6 +339,7 @@ bool vector::llenando_vector_por_digito(short num)
 
 ostream& operator<<(ostream& sal, vector& v)
 {
+
 	sal << " { ";
 	for (int i = 0; i < v.tamanio; i++)
 	{

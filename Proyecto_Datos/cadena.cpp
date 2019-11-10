@@ -1,5 +1,8 @@
 #include"cadena.h"
 
+// cadena.cpp
+// Autores: Gabriel Barboza Carvajal , Jorge Canales Espinoza , Joan Corea Aguilar
+// Descripción: un vector de caracteres que se expande para poder guardar datos para gestionarlos despues...(implementacion)
 
 // Inicializa un cadena de tamaño t - todos los valores en cero
 cadena::cadena(int t) : v{ nullptr }, capacidad{ t }, tam{ 0 } {
@@ -29,7 +32,7 @@ cadena::~cadena() {
 // Inserta un nuevo valor en el cadena
 void cadena::Insertar(char valor) {
 	int pos;
-	cout << "insertando -> " << tam << endl;
+	//cout << "insertando -> " << tam << endl;
 	// Si sobrepasamos la capacidad del vector, incrementamos su tamaño
 	if (tam == capacidad)
 		Extender();
@@ -83,6 +86,17 @@ void cadena::guardar_resultado(string nombre_archivo)
 	ofstream entrada = ofstream(nombre_archivo);
 
 	for (size_t i = 0; i < this->getTam(); i++)
+	{
+		entrada << (short)(v[i]) - 48;
+	}
+	entrada.close();
+}
+
+void cadena::guardar_resultado_alreves(string nombre_archivo)
+{
+	ofstream entrada = ofstream(nombre_archivo);
+
+	for (int i = this->getTam() - 1; i >= 0; i--)
 	{
 		entrada << (short)(v[i]) - 48;
 	}

@@ -1,4 +1,8 @@
 
+// nodo.h
+// Autores: Gabriel Barboza Carvajal , Jorge Canales Espinoza , Joan Corea Aguilar
+// Descripción: clase nodo con la cual se va a crear el la lista del interger , contiene un vector con cuatro celdas tipo short...
+
 #ifndef NODO_H_
 #define NODO_H_
 #include"vector.h"
