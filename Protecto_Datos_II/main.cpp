@@ -7,8 +7,8 @@
 using namespace std;
 
 int isKeyword(char buffer[]) {
-	char keywords[32][10] = { "char","double","else","float","for",
-							"if","int","long","return","short",
+	char keywords[32][10] = { "else","float","for",
+							"if","int","return","string",
 							"void","while" };
 	int i, flag = 0;
 
@@ -43,6 +43,7 @@ int main() {
 		if (isalnum(ch)) {
 			buffer[j++] = ch;
 		}
+
 		else if ((ch == ' ' || ch == '\n') && (j != 0)) {
 			buffer[j] = '\0';
 			j = 0;
