@@ -24,17 +24,26 @@ bool tools::ValidaParentesis(string expresion) {
 	return esValida;
 }
 
-int tools::isKeyword(char buffer[]) {
-	char keywords[32][10] = { "else","float","for",
+int tools::isKeyword(string key) {
+	string keywords[] = { "else","float","for",
 							"if","int","return","string",
 							"void","while" };
-	int i, flag = 0;
-
-	for (i = 0; i < 32; ++i) {
-		if (strcmp(keywords[i], buffer) == 0) {
-			flag = 1;
-			break;
+	
+	for (int i = 0; i < sizeof(keywords)/sizeof(*keywords); ++i) {
+		if (key==keywords[i]) {
+			return 1;
 		}
 	}
-	return flag;
+	return 0;
+}
+
+int tools::isOperator(char oper) {
+	char operators[] = {'+','-','*','/','=','%'};
+
+	for (int i = 0; i < 6;i++) {
+		if (oper==operators[i]) {
+			return 1;
+		}
+	}
+	return 0;
 }

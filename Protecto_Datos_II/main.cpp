@@ -1,13 +1,11 @@
 #include "tools.h"
 
-
-
 int main() {
 
 	tools tool;
-	char ch, buffer[15], operators[] = "+-*/%=";
+	char ch, buffer[15];
 	ifstream fin("program.txt");
-	int i, j = 0;
+	int j = 0;
 
 	if (!fin.is_open()) {
 		cout << "Error al abrir el archivo \n";
@@ -17,19 +15,17 @@ int main() {
 	while (!fin.eof()) {
 		ch = fin.get();
 
-		for (i = 0; i < 6; ++i) {
-			if (ch == operators[i])
+		for (int i = 0; i < 6; ++i) {
+			if (tool.isOperator(ch)==1)
 				cout << ch << " is operator\n";
 		}
 
 		if (isalnum(ch)) {
 			buffer[j++] = ch;
 		}
-
 		else if ((ch == ' ' || ch == '\n') && (j != 0)) {
 			buffer[j] = '\0';
 			j = 0;
-
 			if (tool.isKeyword(buffer) == 1)
 				cout << buffer << " is keyword\n";
 			else

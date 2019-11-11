@@ -13,8 +13,8 @@ using namespace std;
 class tools
 {
 public:
-
 	bool ValidaParentesis(string);
-	int isKeyword(char[]);
+	int isKeyword(string);
+	int isOperator(char);
 };
 #endif  // TOOLS_
