@@ -1,5 +1,5 @@
 int suma ()
 {
-	int a, b,c;
+	int num1, num2,num3;
 	c = a + b ; 
 }
