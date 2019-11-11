@@ -35,7 +35,6 @@ int main() {
 			else
 				cout << buffer << " is indentifier\n";
 		}
-
 	}
 
 	string linea, archivo;
