@@ -8,38 +8,43 @@
 using namespace std;
 #include "tools.h"
 
-bool ValidaParentesis(string expresion) {
-	stack<char> pila;
-	bool esValida = true;
-	char c, aux;
 
-	for (string::size_type i = 0; i < expresion.size(); ++i) {
-		c = expresion[i];
-		if (c == '(' || c == '[' || c == '{')
-			pila.push(c);
-		else if (c == ')' || c == ']' || c == '}')
-			if (pila.empty())
-				esValida = false;
-			else {
-				aux = pila.top();
-				pila.pop();
-				if ((c == '(' && aux != ')') || (c == '[' && aux != ']') || (c == '{' && aux != '}'))
-					esValida = false;
-			}
-	}
-	if (!pila.empty())
-		return false;
-	return esValida;
-}
 
 int main() {
 
+	tools tool;
+	char ch, buffer[15], operators[] = "+-*/%=";
 	ifstream fin("program.txt");
+	int i, j = 0;
 
 	if (!fin.is_open()) {
 		cout << "Error al abrir el archivo \n";
 		exit(0);
 	}
+
+	while (!fin.eof()) {
+		ch = fin.get();
+
+		for (i = 0; i < 6; ++i) {
+			if (ch == operators[i])
+				cout << ch << " is operator\n";
+		}
+
+		if (isalnum(ch)) {
+			buffer[j++] = ch;
+		}
+
+		else if ((ch == ' ' || ch == '\n') && (j != 0)) {
+			buffer[j] = '\0';
+			j = 0;
+
+			if (tool.isKeyword(buffer) == 1)
+				cout << buffer << " is keyword\n";
+			else
+				cout << buffer << " is indentifier\n";
+		}
+	}
+
 	string linea, archivo;
 	while (getline(fin, linea)) {
 		archivo += linea + "\n";
