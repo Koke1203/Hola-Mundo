@@ -14,7 +14,7 @@ class tools
 {
 public:
 
-	bool ValidaParentesis(string);
+	/*bool ValidaParentesis(string);*/
 	int isKeyword(char[]);
 };
 #endif  // TOOLS_
