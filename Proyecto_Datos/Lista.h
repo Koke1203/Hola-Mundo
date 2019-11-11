@@ -162,7 +162,6 @@ inline nodo* lista_doble_enlazada::obtener_nodo(long indice)
 	return actual;
 }
 
-
 inline vector* lista_doble_enlazada::buscar_elemento(vector& dato)
 {
 	actual = inicio;
@@ -370,11 +369,6 @@ inline nodo* lista_doble_enlazada::getUltimo()
 
 	return aux;
 }
-
-
-
-
-
 
 
 #endif  // FOO_BAR_BAZ_H_
