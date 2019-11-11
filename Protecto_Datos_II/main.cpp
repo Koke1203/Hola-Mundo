@@ -1,54 +1,10 @@
-#include<iostream>
-#include<fstream>
-#include<stdlib.h>
-#include<string.h>
-#include<ctype.h>
-#include <stack>
-#include <string>
-using namespace std;
-
-int isKeyword(char buffer[]) {
-	char keywords[32][10] = { "else","float","for",
-							"if","int","return","string",
-							"void","while" };
-	int i, flag = 0;
-
-	for (i = 0; i < 32; ++i) {
-		if (strcmp(keywords[i], buffer) == 0) {
-			flag = 1;
-			break;
-		}
-	}
-
-	return flag;
-}
+#include "tools.h"
 
 
-bool ValidaParentesis(string expresion) {
-	std::stack<char> pila;
-	bool esValida = true;
-	char c, aux;
-
-	for (string::size_type i = 0; i < expresion.size(); ++i) {
-		c = expresion[i];
-		if (c == '(' || c == '[' || c == '{')
-			pila.push(c);
-		else if (c == ')' || c == ']' || c == '}')
-			if (pila.empty())
-				esValida = false;
-			else {
-				aux = pila.top();
-				pila.pop();
-				if ((c == '(' && aux != ')') || (c == '[' && aux != ']') || (c == '{' && aux != '}'))
-					esValida = false;
-			}
-	}
-	if (!pila.empty())
-		return false;
-	return esValida;
-}
 
 int main() {
+
+	tools tool;
 	char ch, buffer[15], operators[] = "+-*/%=";
 	ifstream fin("program.txt");
 	int i, j = 0;
@@ -74,7 +30,7 @@ int main() {
 			buffer[j] = '\0';
 			j = 0;
 
-			if (isKeyword(buffer) == 1)
+			if (tool.isKeyword(buffer) == 1)
 				cout << buffer << " is keyword\n";
 			else
 				cout << buffer << " is indentifier\n";
@@ -86,7 +42,7 @@ int main() {
 		archivo += linea + "\n";
 	}
 
-	if (ValidaParentesis(archivo))
+	if (tool.ValidaParentesis(archivo))
 		cout << "Llaves correctas" << endl << endl;
 	else
 		cout << "Faltan cierres de alguna llave " << endl << endl;
