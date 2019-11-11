@@ -15,10 +15,8 @@ int main() {
 	while (!fin.eof()) {
 		ch = fin.get();
 
-		for (int i = 0; i < 6; ++i) {
-			if (tool.isOperator(ch)==1)
-				cout << ch << " is operator\n";
-		}
+		if (tool.isOperator(ch) == 1)
+			cout << ch << " is operator\n";
 
 		if (isalnum(ch)) {
 			buffer[j++] = ch;
