@@ -5,50 +5,28 @@
 #include<ctype.h>
 #include <stack>
 #include <string>
+#include "symbol_table.h"
+#include "tools.h"
 using namespace std;
 
-
-bool ValidaParentesis(string expresion) {
-	stack<char> pila;
-	bool esValida = true;
-	char c, aux;
-
-	for (string::size_type i = 0; i < expresion.size(); ++i) {
-		c = expresion[i];
-		if (c == '(' || c == '[' || c == '{')
-			pila.push(c);
-		else if (c == ')' || c == ']' || c == '}')
-			if (pila.empty())
-				esValida = false;
-			else {
-				aux = pila.top();
-				pila.pop();
-				if ((c == '(' && aux != ')') || (c == '[' && aux != ']') || (c == '{' && aux != '}'))
-					esValida = false;
-			}
-	}
-	if (!pila.empty())
-		return false;
-	return esValida;
-}
-
-
-
 int main() {
-
+	Tools tool;
+	SymbolTable tabla;
+	
 	ifstream fin("program.txt");
 
 	if (!fin.is_open()) {
 		cout << "Error al abrir el archivo \n";
 		exit(0);
 	}
+
 	string linea, archivo;
 	while (getline(fin, linea)) {
 		archivo += linea + "\n";
 	}
 	cout << endl <<endl;
 
-	if (ValidaParentesis(archivo))
+	if (tool.ValidaParentesis(archivo))
 		cout << "Parentesis correctos" << endl << endl;
 	else
 		cout << "Parentesis con problemas de cierre o apertura" << endl << endl;

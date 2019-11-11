@@ -1,61 +1,8 @@
-const int MAX = 100;
-#include <iostream>
+#include "symbol_table.h"
 using namespace std;
-class Node {
-
-	string identifier, scope, type;
-	int lineNo;
-	Node* next;
-
-public:
-	Node()
-	{
-		next = NULL;
-	}
-
-	Node(string key, string value, string type, int lineNo)
-	{
-		this->identifier = key;
-		this->scope = value;
-		this->type = type;
-		this->lineNo = lineNo;
-		next = NULL;
-	}
-
-	void print()
-	{
-		cout << "Identifier's Name:" << identifier
-			<< "\nType:" << type
-			<< "\nScope: " << scope
-			<< "\nLine Number: " << lineNo << endl;
-	}
-	friend class SymbolTable;
-};
-
-class SymbolTable {
-	Node* head[MAX];
-
-public:
-	SymbolTable()
-	{
-		for (int i = 0; i < MAX; i++)
-			head[i] = NULL;
-	}
-
-	int hashf(string id); // hash function 
-	bool Insertar(string id, string scope,
-		string Type, int lineno);
-
-	string Buscar(string id);
-
-	bool BorrarIdentificador(string id);
-
-	bool Modificar(string id, string scope,
-		string Type, int lineno);
-};
 
 // Function to modify an identifier 
-bool SymbolTable::Modificar(string id, string s,
+bool SymbolTable::modificar(string id, string s,
 	string t, int l)
 {
 	int index = hashf(id);
@@ -78,7 +25,7 @@ bool SymbolTable::Modificar(string id, string s,
 }
 
 
-bool SymbolTable::BorrarIdentificador(string id)
+bool SymbolTable::borrar_identificador(string id)
 {
 	int index = hashf(id);
 	Node* tmp = head[index];
@@ -115,7 +62,7 @@ bool SymbolTable::BorrarIdentificador(string id)
 }
 
 
-string SymbolTable::Buscar(string id)
+string SymbolTable::buscar(string id)
 {
 	int index = hashf(id);
 	Node* start = head[index];
@@ -126,7 +73,7 @@ string SymbolTable::Buscar(string id)
 	while (start != NULL) {
 
 		if (start->identifier == id) {
-			start->print();
+			//start->print();
 			return start->scope;
 		}
 
@@ -137,7 +84,7 @@ string SymbolTable::Buscar(string id)
 }
 
 // Function to insert an identifier 
-bool SymbolTable::Insertar(string id, string scope,
+bool SymbolTable::insertar(string id, string scope,
 	string Type, int lineno)
 {
 	int index = hashf(id);

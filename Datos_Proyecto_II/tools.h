@@ -10,11 +10,13 @@
 #include <string>
 using namespace std;
 
-class tools
+class Tools
 {
 public:
 
-	/*bool ValidaParentesis(string);*/
-	int isKeyword(char[]);
+	int isKeyword(string);
+	int isOperator(char);
+	bool ValidaParentesis(string);
+
 };
 #endif  // TOOLS_
