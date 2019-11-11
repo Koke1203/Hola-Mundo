@@ -1,28 +1,10 @@
-const int MAX = 100;
+#ifndef TABLE_
+#define TABLE_
+
 #include<iostream>
 using namespace std;
 
-class SymbolTable {
-	Node* head[MAX];
-
-public:
-	SymbolTable()
-	{
-		for (int i = 0; i < MAX; i++)
-			head[i] = NULL;
-	}
-
-	int hashf(string id); // hash function 
-	bool insertar(string id, string scope,
-		string Type, int lineno);
-
-	string buscar(string id);
-
-	bool borrar_identificador(string id);
-
-	bool modificar(string id, string scope,
-		string Type, int lineno);
-};
+const int MAX = 100;
 
 
 //Nodo que se usa para la tabla
@@ -53,6 +35,31 @@ public:
 			<< "\nScope: " << scope
 			<< "\nLine Number: " << lineNo << endl;
 	}*/
-	
+
 	friend class SymbolTable;
 };
+
+
+class SymbolTable {
+public:
+	Node* head[MAX];
+
+	SymbolTable()
+	{
+		for (int i = 0; i < MAX; i++)
+			head[i] = NULL;
+	}
+
+	int hashf(string id); // hash function 
+	bool insertar(string id, string scope,
+		string Type, int lineno);
+
+	string buscar(string id);
+
+	bool borrar_identificador(string id);
+
+	bool modificar(string id, string scope,
+		string Type, int lineno);
+};
+
+#endif

@@ -1,5 +1,4 @@
 #include "symbol_table.h"
-using namespace std;
 
 // Function to modify an identifier 
 bool SymbolTable::modificar(string id, string s,
