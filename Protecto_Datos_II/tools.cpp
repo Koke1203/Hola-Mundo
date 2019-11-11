@@ -25,9 +25,8 @@ bool tools::ValidaParentesis(string expresion) {
 }
 
 int tools::isKeyword(char buffer[]) {
-	char keywords[32][10] = { "else","float","for",
-							"if","int","return","string",
-							"void","while" };
+	char keywords[32][10] = { "void","int","float","string",
+							"if","while","return"};
 	int i, flag = 0;
 
 	for (i = 0; i < 32; ++i) {
