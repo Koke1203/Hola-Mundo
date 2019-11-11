@@ -51,7 +51,7 @@ int main() {
 	if (ValidaParentesis(archivo))
 		cout << "Parentesis correctos" << endl << endl;
 	else
-		cout << "Parentesis con problemas" << endl << endl;
+		cout << "Parentesis con problemas de cierre o apertura" << endl << endl;
 
 	return 0;
 }
