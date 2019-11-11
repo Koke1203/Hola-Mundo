@@ -124,6 +124,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="symbol_table.cpp" />
   </ItemGroup>
   <ItemGroup>
     <Text Include="program.txt" />
