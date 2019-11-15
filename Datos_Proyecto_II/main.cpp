@@ -25,7 +25,7 @@ int main() {
 	string archivo[MAX];
 	string linea;
 
-	string nombre_archivo = "prueba3.txt";
+	string nombre_archivo = "prueba1.txt";
 	
 	ifstream fin(nombre_archivo);
 	if (!fin.is_open()) {
