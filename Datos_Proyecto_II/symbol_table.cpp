@@ -1,57 +1,59 @@
+//symbol_table.cpp
+//Autores: Gabriel Barboza, Jorge Canales y Joan Corea
+//Descripcion: implementacion de tabla de simbolos 
+
 #include "symbol_table.h"
 
-// Function to modify an identifier 
-bool SymbolTable::modificar(string id, string s,
-	string t, int l)
+// Modifica por medio de un identificador, retorna falso si no encuentra el identificador dentro de la tabla
+bool SymbolTable::modificar(string identificador, string alcance,
+	string tipo, int linea)
 {
-	int index = hashf(id);
-	Node* start = head[index];
+	int index = funcion_hash(identificador);
+	Nodo* start = head[index];
 
 	if (start == NULL)
 		return "-1";
 
 	while (start != NULL) {
-		if (start->identifier == id) {
-			start->scope = s;
-			start->type = t;
-			start->lineNo = l;
+		if (start->identificador == identificador) {
+			start->alcance = tipo;
+			start->linea = linea;
 			return true;
 		}
 		start = start->next;
 	}
 
-	return false; // id not found 
+	return false;
 }
 
 
-bool SymbolTable::borrar_identificador(string id)
+bool SymbolTable::borrar_identificador(string identicador)
 {
-	int index = hashf(id);
-	Node* tmp = head[index];
-	Node* par = head[index];
+	int index = funcion_hash(identicador);
+	Nodo* tmp = head[index];
+	Nodo* par = head[index];
 
 	if (tmp == NULL) {
 		return false;
 	}
 
-	if (tmp->identifier == id && tmp->next == NULL) {
+	if (tmp->identificador == identicador && tmp->next == NULL) {
 		tmp->next = NULL;
 		delete tmp;
 		return true;
 	}
 
-	while (tmp->identifier != id && tmp->next != NULL) {
+	while (tmp->identificador != identicador && tmp->next != NULL) {
 		par = tmp;
 		tmp = tmp->next;
 	}
-	if (tmp->identifier == id && tmp->next != NULL) {
+	
+	if (tmp->identificador == identicador && tmp->next != NULL) {
 		par->next = tmp->next;
 		tmp->next = NULL;
 		delete tmp;
 		return true;
-	}
-
-	else {
+	}else {
 		par->next = NULL;
 		tmp->next = NULL;
 		delete tmp;
@@ -60,65 +62,50 @@ bool SymbolTable::borrar_identificador(string id)
 	return false;
 }
 
-
-string SymbolTable::buscar(string id)
+//retorna 0 si no lo encuentra, retorna 1 si lo encuentra
+string SymbolTable::buscar(string identicador)
 {
-	int index = hashf(id);
-	Node* start = head[index];
+	int index = funcion_hash(identicador);
+	Nodo* start = head[index];
 
 	if (start == NULL)
-		return "-1";
+		return "0";
 
 	while (start != NULL) {
 
-		if (start->identifier == id) {
-			//start->print();
-			return start->scope;
+		if (start->identificador == identicador) {
+			return "1";
 		}
 
 		start = start->next;
 	}
 
-	return "-1"; // not found 
+	return "0"; 
 }
 
-// Function to insert an identifier 
-bool SymbolTable::insertar(string id, string scope,
-	string Type, int lineno)
+bool SymbolTable::insertar(string identicador, string alcance,
+	string tipo, int linea)
 {
-	int index = hashf(id);
-	Node* p = new Node(id, scope, Type, lineno);
-
+	int index = funcion_hash(identicador);
+	Nodo* p = new Nodo(identicador, alcance, tipo, linea);
 	if (head[index] == NULL) {
 		head[index] = p;
-		cout << "\n"
-			<< id << " inserted";
-
 		return true;
-	}
-
-	else {
-		Node* start = head[index];
+	}else {
+		Nodo* start = head[index];
 		while (start->next != NULL)
 			start = start->next;
-
 		start->next = p;
-		cout << "\n"
-			<< id << " inserted";
-
 		return true;
 	}
-
 	return false;
 }
 
-int SymbolTable::hashf(string id)
+int SymbolTable::funcion_hash(string identificador)
 {
 	int asciiSum = 0;
-
-	for (int i = 0; i < id.length(); i++) {
-		asciiSum = asciiSum + id[i];
+	for (int i = 0; i < identificador.length(); i++) {
+		asciiSum = asciiSum + identificador[i];
 	}
-
 	return (asciiSum % 100);
 }

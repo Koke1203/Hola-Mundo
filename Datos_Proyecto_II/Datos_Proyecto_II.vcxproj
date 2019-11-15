@@ -128,8 +128,10 @@
     <ClCompile Include="tools.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="info_linea.h" />
     <ClInclude Include="symbol_table.h" />
     <ClInclude Include="tools.h" />
+    <ClInclude Include="validation.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

@@ -32,5 +32,11 @@
     <ClInclude Include="symbol_table.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="info_linea.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="validation.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

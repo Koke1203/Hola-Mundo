@@ -1,3 +1,7 @@
+//symbol_table.h
+//Autores: Gabriel Barboza, Jorge Canales y Joan Corea
+//Descripcion: Encabezado del archivo symbol_table.cpp
+
 #ifndef TABLE_
 #define TABLE_
 
@@ -8,41 +12,32 @@ const int MAX = 100;
 
 
 //Nodo que se usa para la tabla
-class Node {
+class Nodo {
 public:
-	string identifier, scope, type;
-	int lineNo;
-	Node* next;
+	string identificador, alcance, tipo;
+	int linea;
+	Nodo* next;
 
-	Node()
+	Nodo()
 	{
 		next = NULL;
 	}
 
-	Node(string key, string value, string type, int lineNo)
+	Nodo(string llave1, string alcance1, string tipo1, int linea1)
 	{
-		this->identifier = key;
-		this->scope = value;
-		this->type = type;
-		this->lineNo = lineNo;
+		this->identificador = llave1;
+		this->alcance = alcance1;
+		this->tipo = tipo1;
+		this->linea = linea1;
 		next = NULL;
 	}
-
-	/*void print()
-	{
-		cout << "Identifier's Name:" << identifier
-			<< "\nType:" << type
-			<< "\nScope: " << scope
-			<< "\nLine Number: " << lineNo << endl;
-	}*/
 
 	friend class SymbolTable;
 };
 
-
 class SymbolTable {
 public:
-	Node* head[MAX];
+	Nodo* head[MAX];
 
 	SymbolTable()
 	{
@@ -50,16 +45,14 @@ public:
 			head[i] = NULL;
 	}
 
-	int hashf(string id); // hash function 
-	bool insertar(string id, string scope,
-		string Type, int lineno);
+	int funcion_hash(string id);  //funcion de hash, para sacar los id
+	bool insertar(string,string,string,int);
 
-	string buscar(string id);
+	string buscar(string);
 
-	bool borrar_identificador(string id);
+	bool borrar_identificador(string);
 
-	bool modificar(string id, string scope,
-		string Type, int lineno);
+	bool modificar(string,string,string,int);
 };
 
 #endif
