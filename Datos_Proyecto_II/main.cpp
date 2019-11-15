@@ -3,19 +3,19 @@
 //Descripcion: 
 #include "Validation.h"
 
-/* 1) Se adjuntan txt's con el formato respectivo para la prueba del sistema
+/* 
+   1) Se adjuntan txt's con el formato respectivo para la prueba del sistema
    el primer archivo llamado 'prueba1' contiene el error de que no se declara una variable 
-   ademas que se declara otra variable entera pero se le asigna una cadena.
+   ademas que se declara otra variable entera pero se le asigna una cadena, ademas que se retorna un tipo incorrecto, ya que la funcion
+   es de tipo int, y de retorna un string. Son tres errores
+
    2) El segundo archivo se llama 'prueba2', contiene los siguientes errores: se declara un string pero se le iguala una cadena,
-      ademas que se declara un metodo void y se retorna una variable
-   3) El tercer archivo se llama 'prueba3' que no contiene ningun error
+      ademas que se declara un metodo void, se retorna una variable
 
-   Nota: si no se imprime nada es porque el archivo esta correcto
-
-
+   3) El tercer archivo se llama 'prueba3' no contiene errores, imprime por pantalla "Compilacion exitosa"
+	
    A la variable que se le tiene que cambiar el nombre del archivo se llama: 'nombre_archivo'
 */
-
 
 int main() {
 	Tools tool;
@@ -24,7 +24,7 @@ int main() {
 	string archivo[MAX];
 	string linea;
 
-	string nombre_archivo = "prueba1.txt";
+	string nombre_archivo = "prueba3.txt";
 	
 	ifstream fin(nombre_archivo);
 	if (!fin.is_open()) {

@@ -49,7 +49,7 @@ void validaVariable(string st[], Tools tool) {
 				errores++;
 			}
 
-			int param_aux = 2;
+			int param_aux = 3;
 			//En caso de una funcion: recorre todos los parametros
 			for (int j = param_aux; j < (param_aux * 6); (j += 3)) {
 				if (tool.isVariable(aux[j])) {  
@@ -80,6 +80,8 @@ void funcionRetorno(string archivo[]) {
 	string valreturn = "";
 	string tipofun = "";
 	string nombreret = "";
+	string nombrefun = "";
+	string tipo = "";
 	for (int i = 0; i < 20; i++)
 	{
 		string aux[20];
@@ -93,7 +95,7 @@ void funcionRetorno(string archivo[]) {
 		if (aux[2] == "(") {
 			cont3 = i;
 			tipofun = aux[0];
-			cout << "El tipo de la funcion " << tipofun << endl;
+			nombrefun = aux[1];
 		}
 		if (aux[0] == "void") {
 			cont1++;
@@ -108,28 +110,26 @@ void funcionRetorno(string archivo[]) {
 		}
 	}
 	if (cont1 == 1 && cont2 == 1 && poscreturn + 1 < poscparent + 1) {
-		cout << "Error - Linea " << poscreturn + 1 << ": return en una funcion void" << endl;
+		cout << "Error-Linea " << poscreturn + 1 << ": return en una funcion void" << endl;
 		errores++;
 	}
 	if (cont1 == 1 && cont2 == 1 && poscreturn + 1 > poscparent + 1) {
-		cout << "Error - Linea " << poscreturn + 1 << ": return no tiene asociacion con ninguna funcion" << endl;
+		cout << "Error-Linea " << poscreturn + 1 << ": return no tiene asociacion con ninguna funcion" << endl;
 		errores++;
 	}
 	if (cont1 == 0 && cont2 == 1 && poscreturn + 1 > poscparent + 1)
 	{
-		cout << "Error - Linea " << poscreturn + 1 << ": esta fuera de las llaves de la funcion" << endl;
+		cout << "Error-Linea " << poscreturn + 1 << ": esta fuera de las llaves de la funcion" << endl;
 		errores++;
 	}
 	if (cont1 == 0 && cont2 == 1 && poscreturn + 1 < cont3 + 1)
 	{
-		cout << "Error - Linea " << poscreturn + 1 << ": esta fuera de las llaves de la funcion" << endl;
+		cout << "Error-Linea " << poscreturn + 1 << ": esta fuera de las llaves de la funcion" << endl;
 		errores++;
 	}
-	string tipo = tabla.buscar(nombreret);
+	tipo = tabla.buscar(nombreret);
 	if (tipofun != tipo) {
-		cout << "Error - Linea " << poscreturn + 1 << ": El tipo de retorno es diferente a la funcion" << endl;
-		cout << tipo << endl;
-		cout << nombreret << endl;
+		cout << "Error-Linea " << poscreturn + 1 << ": valor de retorno no coincide con la declaracion de '"<< nombrefun <<"'" << endl;
 		errores++;
 	}
 }

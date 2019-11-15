@@ -26,7 +26,7 @@ public:
 
 	string obtener_info(string a)
 	{
-		msjError += "Error-Linea " + std::to_string((numLinea+1)) + ": '" + lineaDatos+"' "+a + "\n";
+		msjError += "Error-Linea " + std::to_string((numLinea+1)) + ": " + lineaDatos+" "+a + "\n";
 		return msjError;
 	}
 

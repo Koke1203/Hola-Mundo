@@ -6,5 +6,5 @@ int suma ( string n , int b , string d ){
 	b = 10;
 	suma = 10;
 	aux = "";
-	return a ;
+	return n ;
 }
