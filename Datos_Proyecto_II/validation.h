@@ -22,9 +22,10 @@
 #define MAX 100
 using namespace std;
 int errores = 0;
+SymbolTable tabla;
 
 //valida que uno variable este declarada tomando en cuenta los parametros
-void validaVariable(string st[], Tools tool, SymbolTable tabla) {
+void validaVariable(string st[], Tools tool) {
 	for (int i = 0; i < 26;i++) {
 		string aux[17];
 		stringstream ss(st[i]);
@@ -76,6 +77,9 @@ void funcionRetorno(string archivo[]) {
 	int parent = 0;
 	int poscparent = 0;
 	int poscreturn = 0;
+	string valreturn = "";
+	string tipofun = "";
+	string nombreret = "";
 	for (int i = 0; i < 20; i++)
 	{
 		string aux[20];
@@ -88,6 +92,8 @@ void funcionRetorno(string archivo[]) {
 		}
 		if (aux[2] == "(") {
 			cont3 = i;
+			tipofun = aux[0];
+			cout << "El tipo de la funcion " << tipofun << endl;
 		}
 		if (aux[0] == "void") {
 			cont1++;
@@ -95,28 +101,35 @@ void funcionRetorno(string archivo[]) {
 		if (aux[0] == "return") {
 			poscreturn = i;
 			cont2++;
+			nombreret = aux[1];
 		}
 		if (aux[0] == "}") {
 			poscparent = i;
-
 		}
 	}
 	if (cont1 == 1 && cont2 == 1 && poscreturn + 1 < poscparent + 1) {
-		cout << "Error-Linea " << poscreturn + 1 << ": return en una funcion void" << endl;
+		cout << "Error - Linea " << poscreturn + 1 << ": return en una funcion void" << endl;
 		errores++;
 	}
 	if (cont1 == 1 && cont2 == 1 && poscreturn + 1 > poscparent + 1) {
-		cout << "Error-Linea " << poscreturn + 1 << ": return no tiene asociacion con ninguna funcion" << endl;
+		cout << "Error - Linea " << poscreturn + 1 << ": return no tiene asociacion con ninguna funcion" << endl;
 		errores++;
 	}
 	if (cont1 == 0 && cont2 == 1 && poscreturn + 1 > poscparent + 1)
 	{
-		cout << "Error-Linea " << poscreturn + 1 << ": return fuera de las llaves de la funcion" << endl;
+		cout << "Error - Linea " << poscreturn + 1 << ": esta fuera de las llaves de la funcion" << endl;
 		errores++;
 	}
 	if (cont1 == 0 && cont2 == 1 && poscreturn + 1 < cont3 + 1)
 	{
-		cout << "Error-Linea " << poscreturn + 1 << ": return fuera de las llaves de la funcion" << endl;
+		cout << "Error - Linea " << poscreturn + 1 << ": esta fuera de las llaves de la funcion" << endl;
+		errores++;
+	}
+	string tipo = tabla.buscar(nombreret);
+	if (tipofun != tipo) {
+		cout << "Error - Linea " << poscreturn + 1 << ": El tipo de retorno es diferente a la funcion" << endl;
+		cout << tipo << endl;
+		cout << nombreret << endl;
 		errores++;
 	}
 }

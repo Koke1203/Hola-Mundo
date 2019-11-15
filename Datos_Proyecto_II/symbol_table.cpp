@@ -74,7 +74,7 @@ string SymbolTable::buscar(string identicador)
 	while (start != NULL) {
 
 		if (start->identificador == identicador) {
-			return "1";
+			return start->tipo;
 		}
 
 		start = start->next;

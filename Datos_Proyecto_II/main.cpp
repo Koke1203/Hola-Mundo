@@ -19,7 +19,6 @@
 
 int main() {
 	Tools tool;
-	SymbolTable tabla;
 
 	//leemos el archivo----------------------------------
 	string archivo[MAX];
@@ -55,7 +54,7 @@ int main() {
 	mostrar_errores_asignacion(vec);
 
 	//valida si una variable esta declarada o no
-	validaVariable(archivo, tool, tabla);
+	validaVariable(archivo, tool);
 
 	//valida el retorno en las funciones
 	funcionRetorno(archivo);

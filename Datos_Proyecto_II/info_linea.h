@@ -1,6 +1,6 @@
 
 // info_linea.h
-// Autor: Gabriel Barboza Carvajal
+// Autor: Gabriel Barboza Carvajal ,Joan Corea, Jorge Canales
 // Descripción: objeto que almacena informacion de cada linea con sus datos 
 // y ademas el num de esa linea , para asi facilitar el envio de un error...
 
