@@ -21,7 +21,7 @@
 
 #define MAX 100
 using namespace std;
-
+int errores = 0;
 
 //valida que uno variable este declarada tomando en cuenta los parametros
 void validaVariable(string st[], Tools tool, SymbolTable tabla) {
@@ -45,12 +45,13 @@ void validaVariable(string st[], Tools tool, SymbolTable tabla) {
 			}
 			else {  //es porque la variable ya esta declarada y la estan declarando de nuevo
 				cout << "Error-Linea " << (i + 1) << ": " << "'" << aux[0] << "' ya esta declarada" << endl;
+				errores++;
 			}
 
 			int param_aux = 2;
 			//En caso de una funcion: recorre todos los parametros
 			for (int j = param_aux; j < (param_aux * 6); (j += 3)) {
-				if (tool.isVariable(aux[j])) {  //es el tipo del primer parametro
+				if (tool.isVariable(aux[j])) {  
 					tabla.insertar(aux[(j + 1)], "parametro", aux[j], (i + 1));
 				}
 			}
@@ -58,10 +59,11 @@ void validaVariable(string st[], Tools tool, SymbolTable tabla) {
 
 		//es porque hay una variable que no esta declarada
 		if (aux[1] == "=") {
-			//si ya se encuentra la variable, entonces no tiene que tirar error! Al igual que la funcion (*en teoria*)
+			//si ya se encuentra la variable, entonces no tiene que tirar error! Al igual que la funcion
 			if (aux[3] == "" && tabla.buscar(aux[0]) == "0") {
 				//imprimimos el error de declaracion
 				cout << "Error-Linea " << (i + 1) << ": " << "'" << aux[0] << "' no esta declarado" << endl;
+				errores++;
 			}
 		}
 	}
@@ -101,17 +103,21 @@ void funcionRetorno(string archivo[]) {
 	}
 	if (cont1 == 1 && cont2 == 1 && poscreturn + 1 < poscparent + 1) {
 		cout << "Error-Linea " << poscreturn + 1 << ": return en una funcion void" << endl;
+		errores++;
 	}
 	if (cont1 == 1 && cont2 == 1 && poscreturn + 1 > poscparent + 1) {
 		cout << "Error-Linea " << poscreturn + 1 << ": return no tiene asociacion con ninguna funcion" << endl;
+		errores++;
 	}
 	if (cont1 == 0 && cont2 == 1 && poscreturn + 1 > poscparent + 1)
 	{
 		cout << "Error-Linea " << poscreturn + 1 << ": return fuera de las llaves de la funcion" << endl;
+		errores++;
 	}
 	if (cont1 == 0 && cont2 == 1 && poscreturn + 1 < cont3 + 1)
 	{
 		cout << "Error-Linea " << poscreturn + 1 << ": return fuera de las llaves de la funcion" << endl;
+		errores++;
 	}
 }
 
@@ -162,13 +168,16 @@ string verificarValorDeclaradoInt(string lineaDeclaracionInt)
 	{
 		string datos = "";
 		//recorremos desde el igual en adelante....
-		if (lineaDeclaracionInt.find('"', 0) != -1)
+		if (lineaDeclaracionInt.find('"', 0) != -1){
 			return "Comillas no es un valor entero";
+			errores++;
+		}
 
 		for (int i = posIgual + 1; i < lineaDeclaracionInt.length(); i++)
 			if (isalpha(lineaDeclaracionInt[i]))
 			{
 				return "Letra , int no acepta letras o caracteres alfanumericos";
+				errores++;
 				break;
 			}
 
@@ -187,10 +196,14 @@ string verificarValorDeclaradoString(string lineaDeclaracionInt)
 			if (lineaDeclaracionInt[i] == '"')
 				cont++;
 
-	if (cont != 2)
+	if (cont != 2) {
 		return "No hay comillas en la asignacion a string";
-	else
+		errores++;
+	}
+	else {
 		return "-1";
+	}
+
 }
 
 string tipoDato(string lineaProcesar)

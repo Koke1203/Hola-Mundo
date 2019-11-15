@@ -15,8 +15,8 @@ int Tools::isKeyword(string key) {
 }
 
 int Tools::isVariable(string key) {
-	string variables[] = {"float","int","string"};
-	for (int i = 0; i < 3; ++i) {
+	string variables[] = {"void","float","int","string"};
+	for (int i = 0; i < 4; ++i) {
 		if (key == variables[i]) {
 			return 1;
 		}
