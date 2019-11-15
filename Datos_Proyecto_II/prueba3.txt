@@ -1,8 +1,9 @@
 int c = 0;
-int suma( string n , int b , string d ){
+int suma ( string n , int b , string d ){
 	int a = 15;
+	int b = 0;
 	n = "hola";
 	b = 10;
 	c = a+b;
-	return a;
+	return b ;
 }
